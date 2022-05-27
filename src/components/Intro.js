@@ -19,7 +19,7 @@ function Intro(props) {
     }
     return (
         <div>
-            <p id='intro'> Welcome!</p>
+            {/* <p id='intro'> Welcome!</p> */}
             <input 
             type = 'email'
             placeholder='Email...' 

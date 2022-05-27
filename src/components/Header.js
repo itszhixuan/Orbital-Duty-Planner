@@ -5,7 +5,7 @@ function Header(props) {
     const { tasks } = props;
     return (
       <header>
-        <h1>Plan-it</h1>
+        <h1>Plan-it!</h1>
       </header>
     );
   }
