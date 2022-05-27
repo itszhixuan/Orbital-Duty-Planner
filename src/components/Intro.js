@@ -1,7 +1,8 @@
 import {useState} from 'react';
-import Header from './Header';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../Firebase_config';
+import Profile from './Profile';
 
 
 function Intro(props) {
@@ -9,17 +10,29 @@ function Intro(props) {
     const [registerPassword, setRegisterPassword]  = useState("");
     const [loginEmail, setLoginEmail]  = useState("");
     const [loginPassword, setLoginPassword]  = useState("");
+    const handleLoggedIn = props.handleLoggedIn;
 
     const register = async () => {
         try {
-            const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+            await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+            handleLoggedIn();
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    const login = async () => {
+        try {
+           await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+           handleLoggedIn();
         } catch (error) {
             console.log(error.message);
         }
     }
     return (
         <div>
-            <p id='intro'> Welcome!</p>
+        <p id='intro'> Welcome!</p>
+            <div>
             <input 
             type = 'email'
             placeholder='Email...' 
@@ -35,7 +48,26 @@ function Intro(props) {
                 }}
             />
 
-            <button onClick={register}>Register</button>
+            <button onClick={register} >Register</button>
+            </div>
+            <div>
+                <input 
+                type = 'email'
+                placeholder='Email...'
+                onChange={(event) => {
+                    setLoginEmail(event.target.value);
+                }}
+                />
+                <input 
+                type = 'password'
+                placeholder='Password...'
+                onChange={(event) => {
+                    setLoginPassword(event.target.value);
+                }}
+                />
+
+                <button onClick={login} >Login</button>
+            </div>
         </div>
     );
 }
