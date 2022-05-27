@@ -20,7 +20,7 @@ function App() {
         <div>
         {
           auth.currentUser
-          ? <Profile user = {auth.currentUser} />
+          ? <Profile user = {auth.currentUser} handleLoggedIn = {handleLoggedIn}/>
           : <Intro handleLoggedIn = {handleLoggedIn}/>
         }
         </div>
