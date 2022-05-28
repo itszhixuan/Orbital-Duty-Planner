@@ -6,6 +6,10 @@ function Member(props) {
     const minDate = new Date(currentEvent.startDate);
     const maxDate = new Date(currentEvent.endDate);
 
+    function helper(activeStartDate, date, view ) {
+        
+    }
+
     
     return (
         <>
