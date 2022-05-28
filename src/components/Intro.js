@@ -30,7 +30,7 @@ function Intro(props) {
     }
     return (
         <div>
-        <p id='intro'> Welcome!</p>
+        {/* <p id='intro'> Welcome!</p> */}
             <div>
             <input 
             type = 'email'
