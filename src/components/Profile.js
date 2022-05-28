@@ -2,10 +2,13 @@ import { useState } from "react";
 import AddEvent from "./AddEvent";
 import {auth} from "../Firebase_config"
 import { signOut } from "firebase/auth";
+import Member from "./Member";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
     const [events, setEvents] = useState([]);
+    const [currentEvent, setCurrentEvent] = useState("");
+    const [points, setPoints] = useState(0);
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -13,9 +16,15 @@ function Profile(props) {
     const eventList = events.map((e) => 
         <li>
             {e.eventName} |
-            <button> Test button</button>
+            <button onClick ={() => handleMember(e)} > Choose shifts</button>
+            <button> Remove</button>
         </li>
     )
+
+    function handleMember(member) {
+        setCurrentEvent(member);
+        setActive("Member");
+    }
 
     const logout = async () => {
         try {
@@ -37,21 +46,23 @@ function Profile(props) {
                         {eventList}
                     </ul>
                     
-                    <button onClick = {() => setActive("add")}> Create Event</button>
+                    <button onClick = {() => setActive("AddEvent")}> Create Event</button>
                     <button onClick = {logout}>Log out</button>
 
                 </>
-                
-                : <AddEvent 
+                : active === "AddEvent" 
+                ?<AddEvent 
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
+                />
 
+                :<Member 
+                    currentEvent = {currentEvent}
+                    setActive = {setActive}
                 />
             }
         </>
-        
-        
     )
 }
 
