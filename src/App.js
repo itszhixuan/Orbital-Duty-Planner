@@ -22,7 +22,6 @@ function App() {
       <main>
         <div className="App-Intro">
           <h1>Welcome to Plan-it!</h1>
-          <h1>Please log in, or sign up if this is your first time.</h1>
         {
           auth.currentUser
           ? <Profile user = {auth.currentUser} handleLoggedIn = {handleLoggedIn} />

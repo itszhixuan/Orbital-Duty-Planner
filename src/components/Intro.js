@@ -30,7 +30,7 @@ function Intro(props) {
     }
     return (
         <div>
-        {/* <p id='intro'> Welcome!</p> */}
+            <h1>Please log in, or sign up if this is your first time.</h1>
             <div>
             <input 
             type = 'email'
@@ -65,7 +65,7 @@ function Intro(props) {
                 }}
                 />
 
-                <button onClick={login} >Login</button>
+                <button onClick={login}>Login</button>
             </div>
         </div>
     );
