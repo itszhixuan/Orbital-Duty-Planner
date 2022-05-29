@@ -15,10 +15,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
+      {/* <div className="App-header">
         <Header />
         <h2>Automatically create time-tables for you and your team!</h2>
-      </div>
+      </div> */}
 
       <main>
         <div className="App-Intro">
