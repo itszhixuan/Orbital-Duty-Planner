@@ -7,19 +7,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div className="header">
-      <nav>
-        <img src="test1.png"/>
-        <div className="nav-links">
-          <ul>
-            <li><a href="">HOME</a></li>
-            <li><a href="">ABOUT</a></li>
-            <li><a href="">LOGIN</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-
     <div className="text-box">
         <h1>Welcome to Plan-it!</h1>
         <p>Here, we will solve your scheduling issues by creating timetables for you and your team!</p>
