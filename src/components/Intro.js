@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../Firebase_config';
-
+import '../index.css';
 
 function Intro(props) {
     const [registerEmail, setRegisterEmail]  = useState("");
@@ -30,34 +30,19 @@ function Intro(props) {
     }
     return (
         <div>
-        {/* <p id='intro'> Welcome!</p> */}
-            <div>
-            <input 
-            type = 'email'
-            placeholder='Email...' 
-            onChange={(event) => {
-                setRegisterEmail(event.target.value);
-            }}
-            />
-            <input 
-                type = 'password'
-                placeholder='Password...' 
-                onChange={(event) => {
-                    setRegisterPassword(event.target.value);
-                }}
-            />
+         <h1>Sign-in to Plan-it!</h1>
+         <p>Please log in here:</p> 
+{/*          <p id='intro'> Welcome!</p> */}
 
-            <button onClick={register} >Register</button>
-            </div>
             <div>
-                <input 
+                <input className="enter-field"
                 type = 'email'
                 placeholder='Email...'
                 onChange={(event) => {
                     setLoginEmail(event.target.value);
                 }}
                 />
-                <input 
+                <input className="enter-field"
                 type = 'password'
                 placeholder='Password...'
                 onChange={(event) => {
@@ -65,8 +50,28 @@ function Intro(props) {
                 }}
                 />
 
-                <button onClick={login} >Login</button>
+                <button onClick={login} className="learnmore-button" >Login</button>
             </div>
+            <p> or if this is your first time, please sign up here:</p>
+            <div>
+            <input className="enter-field"
+            type = 'email'
+            placeholder='Email...' 
+            onChange={(event) => {
+                setRegisterEmail(event.target.value);
+            }}
+            />
+            <input className="enter-field"
+                type = 'password'
+                placeholder='Password...' 
+                onChange={(event) => {
+                    setRegisterPassword(event.target.value);
+                }}
+            />
+
+            <button onClick={register} className="learnmore-button" >Register</button>
+            </div>
+             
         </div>
     );
 }

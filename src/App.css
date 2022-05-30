@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +23,12 @@
 
 .App-header {
   background-color: #282c34;
-/*min-height: 100vh;
-  display: flex;
-  flex-direction: column; */
   width: 80%;
   align-items: center;
   justify-content: center;
   font-size: 50px;
   line-height: 2em;
   margin: auto;
-  /* color: white; */
   border: 1px #ccc solid;
   padding-top: 40px;
   padding-left: 40px;
@@ -71,4 +67,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
