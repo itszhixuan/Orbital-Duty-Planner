@@ -12,6 +12,7 @@ function AddEvent(props) {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [hours, setHours] = useState("");
+    
 
     const setActive = props.setActive; 
     const events = props.events;
@@ -20,7 +21,6 @@ function AddEvent(props) {
     function handleSubmit(event) {
         event.preventDefault();
         addEvent();
-        console.log("adfadffefefadfeae");
     }
 
     function addEvent() {
@@ -52,11 +52,11 @@ function AddEvent(props) {
                 </label>
                 <label>
                     Start Date:
-                    <input type = 'date' onChange={(e) => setStartDate(e.target.value)}/>
+                    <input type = 'datetime-local' onChange={(e) => setStartDate(e.target.value)}/>
                 </label>
                 <label>
                     End Date:
-                    <input type = 'date' onChange={(e) => setEndDate(e.target.value)}/>
+                    <input type = 'datetime-local' onChange={(e) => setEndDate(e.target.value)}/>
                 </label>
                 <label>
                     Total hours per slot:
