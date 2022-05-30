@@ -8,16 +8,16 @@ function Profile(props) {
     const [active, setActive] = useState("Profile")
     const [events, setEvents] = useState([]);
     const [currentEvent, setCurrentEvent] = useState("");
-    const [points, setPoints] = useState(0);
+    /*{const [points, setPoints] = useState(0);}*/
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
 
     const eventList = events.map((e) => 
         <li>
-            {e.eventName} |
+            <label>{e.eventName}  </label>         
             <button onClick ={() => handleMember(e)} > Choose shifts</button>
-            <button> Remove</button>
+            <button> Remove(test) </button>
         </li>
     )
 
@@ -42,6 +42,7 @@ function Profile(props) {
                 active === "Profile" 
                 ? <> 
                     <h2> Hello, {user.email} !</h2>
+                    <h2> Let's create an event!</h2>
                     <ul>
                         {eventList}
                     </ul>

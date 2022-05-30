@@ -1,11 +1,5 @@
 import { useState } from 'react';
 function AddEvent(props) {
-    /*
-    const setEventName = props.setEventName;
-    const setNumberOfMembers = props.setNumberOfMembers;
-    const setStartDate = props.setNumberOfMembers;
-    const setEndDate = props.setEndDate;
-    const setHours = props.setHours;*/
 
     const [eventName, setEventName] = useState("");
     const [numberOfMembers, setNumberOfMembers] = useState("");
