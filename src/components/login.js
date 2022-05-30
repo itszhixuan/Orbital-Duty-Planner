@@ -13,8 +13,6 @@ function Login() {
 
     return (
         <div className="text-box">
-            <h1>Welcome to Plan-it!</h1>
-            <p>Please log in, or sign up if this is your first time.</p>
             {
             auth.currentUser
             ? <Profile user = {auth.currentUser} handleLoggedIn = {handleLoggedIn}/>

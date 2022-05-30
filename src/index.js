@@ -7,10 +7,6 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div className="text-box">
-        <h1>Welcome to Plan-it!</h1>
-        <p>Here, we will solve your scheduling issues by creating timetables for you and your team!</p>
-    </div>
     <App />
   </React.StrictMode>
 );
