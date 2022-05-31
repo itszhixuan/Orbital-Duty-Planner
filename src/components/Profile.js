@@ -13,7 +13,7 @@ function Profile(props) {
     const eventList = events.map((e) => 
         <li>
             {e.eventName} |
-            <button> Test button</button>
+            <button > Test button</button>
         </li>
     )
 
