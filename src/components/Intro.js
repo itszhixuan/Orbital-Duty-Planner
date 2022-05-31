@@ -29,49 +29,60 @@ function Intro(props) {
         }
     }
     return (
-        <div>
+        <div className='login'>
          <h1>Sign-in to Plan-it!</h1>
-         <p>Please log in here:</p> 
+        
 {/*          <p id='intro'> Welcome!</p> */}
+            <div className='div1'>
+                <p>One of us? Log in here!</p> 
+                <div>
+                    <input className="enter-field"
+                    type = 'email'
+                    placeholder='Email...'
+                    onChange={(event) => {
+                        setLoginEmail(event.target.value);
+                    }}
+                    />
+                </div>
+                <div>
+                    <input className="enter-field"
+                    type = 'password'
+                    placeholder='Password...'
+                    onChange={(event) => {
+                        setLoginPassword(event.target.value);
+                    }}
+                    />
+                </div>
+                <div>
+                    <button onClick={login} className="learnmore-button" >Login</button>
+                </div>
+            </div>
 
-            <div>
+            <div className='div2'>
+                <p> New here? Sign up here!</p>
+                <div>
                 <input className="enter-field"
                 type = 'email'
-                placeholder='Email...'
+                placeholder='Email...' 
                 onChange={(event) => {
-                    setLoginEmail(event.target.value);
+                    setRegisterEmail(event.target.value);
                 }}
                 />
+                </div>
+                <div>
                 <input className="enter-field"
-                type = 'password'
-                placeholder='Password...'
-                onChange={(event) => {
-                    setLoginPassword(event.target.value);
-                }}
+                    type = 'password'
+                    placeholder='Password...' 
+                    onChange={(event) => {
+                        setRegisterPassword(event.target.value);
+                    }}
                 />
+                </div>
+                <div>
 
-                <button onClick={login} className="learnmore-button" >Login</button>
+                <button onClick={register} className="learnmore-button" >Register</button>
+                </div>
             </div>
-            <p> or if this is your first time, please sign up here:</p>
-            <div>
-            <input className="enter-field"
-            type = 'email'
-            placeholder='Email...' 
-            onChange={(event) => {
-                setRegisterEmail(event.target.value);
-            }}
-            />
-            <input className="enter-field"
-                type = 'password'
-                placeholder='Password...' 
-                onChange={(event) => {
-                    setRegisterPassword(event.target.value);
-                }}
-            />
-
-            <button onClick={register} className="learnmore-button" >Register</button>
-            </div>
-             
         </div>
     );
 }

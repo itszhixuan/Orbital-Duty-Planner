@@ -1,17 +1,12 @@
 import { useState } from 'react';
 function AddEvent(props) {
-    /*
-    const setEventName = props.setEventName;
-    const setNumberOfMembers = props.setNumberOfMembers;
-    const setStartDate = props.setNumberOfMembers;
-    const setEndDate = props.setEndDate;
-    const setHours = props.setHours;*/
 
     const [eventName, setEventName] = useState("");
     const [numberOfMembers, setNumberOfMembers] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [hours, setHours] = useState("");
+    
 
     const setActive = props.setActive; 
     const events = props.events;
@@ -20,7 +15,6 @@ function AddEvent(props) {
     function handleSubmit(event) {
         event.preventDefault();
         addEvent();
-        console.log("adfadffefefadfeae");
     }
 
     function addEvent() {
@@ -52,11 +46,11 @@ function AddEvent(props) {
                 </label>
                 <label>
                     Start Date:
-                    <input type = 'date' onChange={(e) => setStartDate(e.target.value)}/>
+                    <input type = 'datetime-local' onChange={(e) => setStartDate(e.target.value)}/>
                 </label>
                 <label>
                     End Date:
-                    <input type = 'date' onChange={(e) => setEndDate(e.target.value)}/>
+                    <input type = 'datetime-local' onChange={(e) => setEndDate(e.target.value)}/>
                 </label>
                 <label>
                     Total hours per slot:
