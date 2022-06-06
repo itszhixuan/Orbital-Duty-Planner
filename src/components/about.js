@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css';
 
-function Homepage() {
+function About() {
 
     return (
         <div class="text-box">
@@ -11,4 +11,4 @@ function Homepage() {
         </div>
     )
 }
-export default Homepage;
+export default About;

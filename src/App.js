@@ -19,12 +19,16 @@ function App() {
             </Routes>
           </section>
           <section className="footer">
-            <h1>Read more at: </h1>
+            <h1>Read more of our project from</h1>
             <div className="icons">
               <a target="_blank" href="https://github.com/itszhixuan/Orbital-Duty-Planner">
                 <i class='fa fa-github fa-xl'></i>
               </a>
+              <a target="_blank" href="https://drive.google.com/drive/folders/1t_zFMXHs81GbIwcQBO5vI9cJWbHl_PjB?usp=sharing">
+                <i class='fa fa-google fa-xl'></i>
+              </a>
             </div>
+            <p>Brought to you by AI-5 &emsp; NUS Orbital 2022</p>
           </section>
         </main>
       </div>
