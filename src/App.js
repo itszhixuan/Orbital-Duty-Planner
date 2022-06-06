@@ -1,21 +1,21 @@
 //import logo from './logo.svg';
 import './App.css';
-import Navigation from './components/navigation';
 import Login from './components/login';
 import Homepage from './components/homepage';
+import About from './components/about';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div>
         <main>
-          <section className="App-Intro">
-            <Navigation />
+          <section>
             <Routes>
               <Route path="/" element={<Homepage />}/>
               <Route path="/homepage" element={<Homepage />}/>
               <Route path="/login" element={<Login />}/>
+              <Route path="/about" element={<About />}/>
             </Routes>
           </section>
           <section className="footer">
