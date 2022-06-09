@@ -223,7 +223,7 @@ nav-img{
   width: 90%;
   margin: auto;
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 .about-col-1{
@@ -262,9 +262,13 @@ nav-img{
     width: 90%;
     margin: auto;
     padding-top: 80px;
-    padding-bottom: 0px;
+    padding-bottom: 100px;
     text-align: center;
   }
+
+.about-features h1{
+  font-size: 30px;
+}
 
 /* .about-col img{
   width: 100%;
@@ -281,7 +285,7 @@ nav-img{
   flex-basis: 31%;
   /* background: rgb(210, 128, 210); */
 /*   background: rgb(194,153,194); */
-  background: #f7e7e7;
+  background: #e3b6ee;
   border-radius: 10px;
   margin-bottom: 5%;
   padding: 40px 13px;
