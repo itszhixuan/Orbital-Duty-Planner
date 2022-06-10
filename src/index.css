@@ -303,6 +303,24 @@ nav-img{
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
 }
 
+.event-page{
+  font-size: 16px;
+  margin-top: 80px;
+}
+
+.event-page h2{
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.current-events-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 150px;
+  overflow: auto;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
