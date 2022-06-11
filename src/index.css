@@ -137,7 +137,6 @@ nav-img{
   background: transparent;
   position: relative;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .learnmore-button:hover{
@@ -311,7 +310,7 @@ nav-img{
 
 .event-page h2{
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
 }
 
 .current-events-list{
@@ -355,6 +354,37 @@ nav-img{
   cursor: pointer;
 }
 
+.current-events-button{
+  display: inline-block;
+  text-decoration: none;
+  width: 17%;
+  color: white;
+  border: 1px white solid;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  margin: 1px;
+  font-size: 12px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.current-events-button:hover{
+  border: 1px solid rgb(149, 92, 149);
+  background: rgb(149, 92, 149);
+  transition: 1s;
+}
+
+.current-events-left{
+  width: 40%;
+  direction: ltr;
+  text-align: left;
+  font-size: 16px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

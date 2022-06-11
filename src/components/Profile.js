@@ -15,9 +15,9 @@ function Profile(props) {
 
     const eventList = events.map((e) => 
         <li>
-            <label>{e.eventName}  </label>         
-            <button onClick ={() => handleMember(e)} > Choose shifts</button>
-            <button> Remove(test) </button>
+            <label className="current-events-left">{e.eventName}  </label>         
+            <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
+            <button className="current-events-button"> Remove(test) </button>
         </li>
     )
 
