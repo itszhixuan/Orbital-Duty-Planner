@@ -137,6 +137,7 @@ nav-img{
   background: transparent;
   position: relative;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .learnmore-button:hover{
@@ -319,6 +320,39 @@ nav-img{
   padding: 0;
   max-height: 150px;
   overflow: auto;
+}
+
+.text-inline{
+  display: inline;
+}
+
+.event-left{
+  width: 20%;
+  direction: ltr;
+  text-align: left;
+  font-size: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
+}
+
+.event-right{
+  width: 20%;
+  font-size: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  border-left: 2px solid black;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  border: 1px white solid;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
 }
 
 body {
