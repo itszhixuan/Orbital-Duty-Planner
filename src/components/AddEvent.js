@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { database, auth} from '../Firebase_config';
+import { push, set, ref } from "firebase/database";
+import userEvent from '@testing-library/user-event';
+
 function AddEvent(props) {
 
     const [eventName, setEventName] = useState("");
@@ -14,6 +18,7 @@ function AddEvent(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
+        addEventToDatabase(auth.currentUser.uid);
         addEvent();
     }
 
@@ -30,6 +35,20 @@ function AddEvent(props) {
         ];
         setEvents(newEvents);
         setActive("Profile");
+    }
+    function addEventToDatabase(profileUID) {
+        const eventRef = ref(database, "users/" + profileUID);
+        const newEventRef = push(eventRef);
+        console.log(newEventRef.key);
+        
+        set(newEventRef, {
+            eventName: eventName,
+            numberOfMembers: numberOfMembers,
+            startDate: startDate,
+            endDate: endDate,
+            hours: hours,
+            key : newEventRef.key
+        });
     }
     
     return (

@@ -10,8 +10,7 @@ function Login() {
     function handleLoggedIn() {
       setLoggedIn(!loggedIn);
     }
-    console.log("somethingggggggggg");
-
+    
     return (
         <div className="text-box">
             {
