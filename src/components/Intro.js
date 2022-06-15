@@ -10,12 +10,15 @@ function Intro(props) {
     const [loginEmail, setLoginEmail]  = useState("");
     const [loginPassword, setLoginPassword]  = useState("");
     const handleLoggedIn = props.handleLoggedIn;
+    const [error, SetError] = useState(null);
+    const [error2, SetError2] = useState(null);
 
     const register = async () => {
         try {
             await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
             handleLoggedIn();
         } catch (error) {
+            SetError(error.message);
             console.log(error.message);
         }
     }
@@ -24,8 +27,9 @@ function Intro(props) {
         try {
            await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
            handleLoggedIn();
-        } catch (error) {
-            console.log(error.message);
+        } catch (error2) {
+            SetError2(error2.message);
+            console.log(error2.message);
         }
     }
     return (
@@ -53,6 +57,7 @@ function Intro(props) {
                     }}
                     />
                 </div>
+                { error2 && <p>{ error2 }</p> }
                 <div>
                     <button onClick={login} className="learnmore-button" >Login</button>
                 </div>
@@ -78,6 +83,7 @@ function Intro(props) {
                     }}
                 />
                 </div>
+                { error && <p>{ error }</p> }
                 <div>
 
                 <button onClick={register} className="learnmore-button" >Register</button>
