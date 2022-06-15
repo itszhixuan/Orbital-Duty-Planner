@@ -55,8 +55,20 @@ For the organisation to start the process of creating a schedule, they will be r
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td colspan=4> Evaluation Milestone 1 (30 May 2022): 1. Ideation 2. Proof of concept 3. Home Page 4. Login/Register Page 5. User Page 6. Adding of events 7. Basic Calendar display </td>
+	<tr>
+            <td colspan=4> <b>Evaluation Milestone 1 (30 May 2022):</b>
+		<ul>
+			<li>Ideation</li>
+			<li>Proof of concept</li>
+			<ul>
+				<li>Home Page</li>
+				<li>Login/Register Page</li>
+				<li>User Page</li>
+				<li>Adding of events</li>
+				<li>Basic Calendar display</li>
+			</ul>
+		</ul>
+	    </td>
         </tr>
         <tr>
             <td>Research into relevant libraries required for project (React, CSS, html, Firebase)</td>
@@ -81,26 +93,34 @@ For the organisation to start the process of creating a schedule, they will be r
             <td>Johnathan</td>
             <td>23 - 24 May</td>
         </tr>
-			  <tr>
+	<tr>
             <td>Event Creation</td>
             <td>Create events customised with start and end dates, number of shifts and number of hours per shift</td>
             <td>Johnathan</td>
             <td>24 - 25 May</td>
         </tr>
-				<tr>
+	<tr>
             <td>Home Page</td>
             <td>Using CSS and html file to create a homepage</td>
             <td>Zhi Xuan</td>
             <td>22 - 29 May</td>
         </tr>				
-				<tr>
+	<tr>
             <td>Calendar creation</td>
             <td>Create a display that shows range of selected dates in a calendar form</td>
             <td>Johnathan</td>
             <td>27 - 29 May</td>
         </tr>
-			  <tr>
-            <td colspan=4> Evaluation Milestone 2: Working prototype of our duty generator (27 June) 1. Distinguish profiles (between Planners and Members) 2. Link profile information to Firebase realtime database 3. Sending of emails to members after creation of event 4. Generating schedule after inputs are taken 5. Show recommended schedule</td>
+	<tr>
+            <td colspan=4> <b>Evaluation Milestone 2: Working prototype of our duty generator (27 June)</b>
+		<ul>
+			<li>Distinguish profiles (between Planners and Members) </li>
+			<li>Link profile information to Firebase realtime database </li>
+			<li>Sending of emails to members after creation of event</li>
+			<li>Generating schedule after inputs are taken </li>
+			<li>Show recommended schedule </li>
+		</ul>
+	    </td>
         </tr>
         <tr>
             <td>Differentiating profiles</td>
@@ -135,8 +155,14 @@ For the organisation to start the process of creating a schedule, they will be r
             <td>Complete CSS styling for all features</td>
             <td>Zhi Xuan</td>
         </tr>
-				<tr>
-            <td colspan=4> Evaluation Milestone 3: Finalising features of our website (25 July) 1. Feature of requesting for duty swaps 2. Ability to group members and planners into organisations 3. Improve UI</td>
+	<tr>
+            <td colspan=4> <b>Evaluation Milestone 3: Finalising features of our website (25 July)</b>
+		<ul>
+			<li>Feature of requesting for duty swaps</li>
+			<li>Ability to group members and planners into organisations</li>
+			<li>Improve UI</li>
+		</ul>
+	    </td>
         </tr>
 				<tr>
             <td>Implementing duty swap feature</td>
@@ -157,7 +183,7 @@ For the organisation to start the process of creating a schedule, they will be r
 						<td>18 - 25 Jul</td>
         </tr>
 				<tr>
-            <td colspan=4> Splashdown: 24 Aug</td>
+		<td colspan=4> <b> Splashdown: 24 Aug </b> </td>
         </tr>
     </tbody>
 </table>
