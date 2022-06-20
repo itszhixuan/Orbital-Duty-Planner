@@ -5,49 +5,47 @@ import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
 import { get, ref } from "firebase/database";
-import { once} from "firebase/database";
-/*
-
-eventRef.once()
-
-var firebaseRef = database.ref("users" + auth.currentUser.uid);
-firebaseRef.once()
-*/
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
     const [events, setEvents] = useState([]);
     const [currentEvent, setCurrentEvent] = useState("");
+    const [init, setInit] = useState(true);
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
 
-    const eventRef = ref(database, 'users/' + auth.currentUser.uid);
-    get(eventRef).then((snapshot) => {
-        if(snapshot.exists()) {
-            console.log(snapshot.val());
-            var newEvents = [];
-            snapshot.forEach((event) => {
-                const eventData = event.val();
-                newEvents = [
-                    ...newEvents, 
-                    {
-                        eventName: eventData.eventName,
-                        numberOfMembers: eventData.numberOfMembers,
-                        startDate: eventData.startDate,
-                        endDate: eventData.endDate,
-                        hours: eventData.hours
-                    }
-                ];
-               
-            });
-             setEvents(newEvents);
-        } else {
-            console.log("hello there's nothing here");
-        } 
-    }).catch ((error) => {
-            console.error(error);
+    if (init) {
+        setInit(false);
+        const eventRef = ref(database, 'users/' + auth.currentUser.uid);
+        get(eventRef).then((snapshot) => {
+            if(snapshot.exists()) {
+                console.log(snapshot.val());
+                var newEvents = [];
+                snapshot.forEach((event) => {
+                    const eventData = event.val();
+                    newEvents = [
+                        ...newEvents, 
+                        {
+                            eventName: eventData.eventName,
+                            numberOfMembers: eventData.numberOfMembers,
+                            startDate: eventData.startDate,
+                            endDate: eventData.endDate,
+                            hours: eventData.hours,
+
+                        }
+                    ];
+                
+                });
+                setEvents(newEvents);
+            } else {
+                console.log("hello there's nothing here");
+            } 
+        }).catch ((error) => {
+                console.error(error);
         });
+    }
+    
     
    /* eventRef.once('value', (eventlist) => {
         
@@ -91,15 +89,20 @@ function Profile(props) {
         setActive("Member");
     }
 
+    function deleteData(event) {
+
+    }
+
     function deleteEvent(event) {
         const eventIndex = events.indexOf(event);
         events.splice(eventIndex, 1);
         const newEvents = [
             ...events
         ]
-        /*
-        deleteData();     
-        */       
+        
+        deleteData(event);      
+       
+        
         setEvents(newEvents);
     }
       
