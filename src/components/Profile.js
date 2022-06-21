@@ -4,7 +4,7 @@ import {auth} from "../Firebase_config"
 import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
-import { get, ref } from "firebase/database";
+import { get, ref, remove } from "firebase/database";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -89,18 +89,22 @@ function Profile(props) {
         setActive("Member");
     }
 
-    function deleteData(event) {
-
-    }
-
     function deleteEvent(event) {
         const eventIndex = events.indexOf(event);
+        const eventKey = event.key;
         events.splice(eventIndex, 1);
         const newEvents = [
             ...events
         ]
         
-        deleteData(event);      
+        remove(ref(database, "users/" + auth.currentUser.uid + "/" + eventKey))
+        .then(function() {
+            console.log("Removal success!");
+            console.log("Event key :" + eventKey);
+        })
+        .catch(function(error) {
+            console.log("Error detected while removing event :" + error);
+        });     
        
         
         setEvents(newEvents);
@@ -113,7 +117,7 @@ function Profile(props) {
                 active === "Profile" 
                 ? <> 
                     <h2> Hello, {user.email} !</h2>
-                    <h2> Let's create an event!</h2>
+                    <h2> Create or join an event!</h2>
                     <ul>
                         {eventList}
                     </ul>
