@@ -4,13 +4,16 @@ import {auth} from "../Firebase_config"
 import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
-import { get, ref } from "firebase/database";
+import { get, ref, remove } from "firebase/database";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
     const [events, setEvents] = useState([]);
     const [currentEvent, setCurrentEvent] = useState("");
+    const [points, setPoints] = useState(0);
     const [init, setInit] = useState(true);
+    const [weekdayPoints, setCurrentWeekdayPoints] = useState(1);
+    const [weekendPoints, setCurrentWeekendPoints] = useState(2);
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -32,7 +35,7 @@ function Profile(props) {
                             startDate: eventData.startDate,
                             endDate: eventData.endDate,
                             hours: eventData.hours,
-
+                            eventKey: eventData.eventKey
                         }
                     ];
                 
@@ -86,26 +89,33 @@ function Profile(props) {
 
     function handleMember(member) {
         setCurrentEvent(member);
+        /*
+        setCurrentWeekendPoints(member.weekendPoints);
+        setCurrentWeekdayPoints(member.weekdayPoints);
+        */
         setActive("Member");
-    }
-
-    function deleteData(event) {
-
     }
 
     function deleteEvent(event) {
         const eventIndex = events.indexOf(event);
+        const eventKey = event.eventKey;
         events.splice(eventIndex, 1);
         const newEvents = [
             ...events
         ]
         
-        deleteData(event);      
+        remove(ref(database, "users/" + auth.currentUser.uid + "/" + eventKey))
+        .then(function() {
+            console.log("Removal success!");
+            console.log("Event key :" + eventKey);
+        })
+        .catch(function(error) {
+            console.log("Error detected while removing event :" + error);
+        });     
        
         
         setEvents(newEvents);
     }
-      
 
     return (
         <>
@@ -133,6 +143,10 @@ function Profile(props) {
                 :<Member 
                     currentEvent = {currentEvent}
                     setActive = {setActive}
+                    points = {points}
+                    setPoints = {setPoints}
+                    weekdayPoints = {weekdayPoints}
+                    weekendPoints = {weekendPoints}
                 />
             }
         </>
