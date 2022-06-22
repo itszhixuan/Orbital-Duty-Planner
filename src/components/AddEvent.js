@@ -48,7 +48,7 @@ function AddEvent(props) {
             startDate: startDate,
             endDate: endDate,
             hours: hours,
-            key : newKey
+            eventKey : newKey
           });
         return newKey;
     }

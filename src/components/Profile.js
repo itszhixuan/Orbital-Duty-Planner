@@ -10,7 +10,10 @@ function Profile(props) {
     const [active, setActive] = useState("Profile")
     const [events, setEvents] = useState([]);
     const [currentEvent, setCurrentEvent] = useState("");
+    const [points, setPoints] = useState(0);
     const [init, setInit] = useState(true);
+    const [weekdayPoints, setCurrentWeekdayPoints] = useState(1);
+    const [weekendPoints, setCurrentWeekendPoints] = useState(2);
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -32,7 +35,7 @@ function Profile(props) {
                             startDate: eventData.startDate,
                             endDate: eventData.endDate,
                             hours: eventData.hours,
-
+                            eventKey: eventData.eventKey
                         }
                     ];
                 
@@ -86,6 +89,10 @@ function Profile(props) {
 
     function handleMember(member) {
         setCurrentEvent(member);
+        /*
+        setCurrentWeekendPoints(member.weekendPoints);
+        setCurrentWeekdayPoints(member.weekdayPoints);
+        */
         setActive("Member");
     }
 
@@ -109,7 +116,6 @@ function Profile(props) {
         
         setEvents(newEvents);
     }
-      
 
     return (
         <>
@@ -136,6 +142,10 @@ function Profile(props) {
                 :<Member 
                     currentEvent = {currentEvent}
                     setActive = {setActive}
+                    points = {points}
+                    setPoints = {setPoints}
+                    weekdayPoints = {weekdayPoints}
+                    weekendPoints = {weekendPoints}
                 />
             }
         </>
