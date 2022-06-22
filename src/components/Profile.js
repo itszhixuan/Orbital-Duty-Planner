@@ -91,7 +91,7 @@ function Profile(props) {
 
     function deleteEvent(event) {
         const eventIndex = events.indexOf(event);
-        const eventKey = event.key;
+        const eventKey = event.eventKey;
         events.splice(eventIndex, 1);
         const newEvents = [
             ...events

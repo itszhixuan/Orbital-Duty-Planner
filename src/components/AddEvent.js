@@ -9,7 +9,6 @@ function AddEvent(props) {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [hours, setHours] = useState("");
-    const [key, setKey] = useState("");
     
     const setActive = props.setActive; 
     const events = props.events;
@@ -17,12 +16,11 @@ function AddEvent(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        addEventToDatabase(auth.currentUser.uid);
-        console.log(key);
-        addEvent();
+        const newKey = addEventToDatabase(auth.currentUser.uid);
+        addEvent(newKey);
     }
 
-    function addEvent() {
+    function addEvent(newKey) {
         const newEvents = [
             ...events,
             {
@@ -31,7 +29,7 @@ function AddEvent(props) {
                 startDate: startDate,
                 endDate: endDate,
                 hours: hours,
-                key: key
+                eventKey: newKey
             }
         ];
         setEvents(newEvents);
@@ -39,20 +37,20 @@ function AddEvent(props) {
     }
 
     function addEventToDatabase(profileUID) {
-        const eventRef = ref(database, "users/" + profileUID);
-        const newEventRef = push(eventRef);
-        setKey(newEventRef.key);
+        const profileRef = ref(database, "users/" + profileUID);
         
-        set(newEventRef, 
-            {
+        const eventRef = push(profileRef);
+        const newKey = eventRef.key;
+        console.log("Event key: " + newKey);
+        set(eventRef, {
             eventName: eventName,
             numberOfMembers: numberOfMembers,
             startDate: startDate,
             endDate: endDate,
             hours: hours,
-            key : key
-        }
-        );
+            key : newKey
+          });
+        return newKey;
     }
     
     return (
