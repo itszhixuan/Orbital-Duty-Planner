@@ -25,7 +25,10 @@ function Member(props) {
     
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
-
+    const onDateChange = (newDate) => {
+        setDate(newDate);
+        console.log(newDate.toDateString());
+    }
     return (
         <>
             <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}</h2>
@@ -35,14 +38,12 @@ function Member(props) {
                 maxDate = {maxDate}
                 tileContent = {<p></p>}
 /*                 onClickDay = {(value, event) => handleClick(value)} */
-                onChange={setDate}
+                onChange={onDateChange}
                 value={date}
                 onClickDay={() => setShowTime(true)}
                 />
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
-{/*                 <div>
-                    <Calendar onChange={setDate} value={date} onClickDay={() => setShowTime(true)}/>
-                </div> */}
+
                 {date.length > 0 ? (
                 <p>
                     <span>Start:</span>
