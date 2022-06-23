@@ -5,7 +5,16 @@
 }
 
 .header{
-  min-height: 120vh;
+  min-height: 135vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../images/colour.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.larger_header{
+  min-height: 160vh;
   width: 100%;
   background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../images/colour.jpg);
   background-position: center;
@@ -319,7 +328,7 @@ nav-img{
   list-style-type: none;
   margin: 0;
   padding: 0;
-  max-height: 200px;
+  max-height: 250px;
   overflow: auto;
 }
 
@@ -392,6 +401,23 @@ nav-img{
   margin-top: 120px;
   margin-bottom: 20px;
 }
+
+.scrolling_for_shifts{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  max-height: 100px;
+  overflow: auto;
+}
+
+.scrolling-for-list{
+  list-style-type: none;
+  margin-top: 20px;
+  padding: 0;
+  max-height: 150px;
+  overflow: auto;
+}
+
 /* ~~~~Initial Code~~~~ */
 body {
   margin: 0;

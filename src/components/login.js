@@ -13,7 +13,7 @@ function Login() {
     }
     
     return (
-        <div className='header'>
+        <div className='larger_header'>
         <nav>
           <img src="test1.png"/>
           <div className="nav-links">

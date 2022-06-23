@@ -36,11 +36,14 @@ function Time_slots(props) {
 return (
     <div className="times">
       <div>
-        <form onSubmit={handleAddTask}>
+        <div>
+          <p>You are looking at shifts for {event} {props.date.toDateString()} </p>
+        </div>
+        <form onSubmit={handleAddTask} className="scrolling_for_shifts">
           {time.map(times => {
             return (
             <div>
-              <button 
+              <button className="current-events-button"
               onClick={(event) => setNewTaskText(event.target.innerText + " " + props.date.toDateString())}
               value={newTaskText} 
               onChange={(e)=> displayInfo(e)}>
@@ -51,12 +54,9 @@ return (
           })}
 {/*           <input type="submit" value="Add" /> */}
         </form>
-        <div>
-          <p>You have selected {event} {props.date.toDateString()} </p>
-        </div>
       </div>
 
-      <div>
+      <div className="scrolling-for-list">
         <h2>Current List:</h2>
         <table>
           <thead>

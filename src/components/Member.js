@@ -44,7 +44,7 @@ function Member(props) {
                 />
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
 
-                {date.length > 0 ? (
+{/*                 {date.length > 0 ? (
                 <p>
                     <span>Start:</span>
                     {date[0].toDateString()}
@@ -57,7 +57,7 @@ function Member(props) {
                     <span>Default selected date:</span>{date.toDateString()}
                 </p> 
                         )
-                }
+                } */}
                 <Calendar_display showTime={showTime} date={date}/>
             </body>
         </>
