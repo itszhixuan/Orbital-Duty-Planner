@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import { Calendar } from "react-calendar";
+import Calendar_display from "./calendar_display";
 
 function Member(props) {
     const currentEvent = props.currentEvent;
@@ -21,6 +23,12 @@ function Member(props) {
     }
     useEffect(() => console.log("Current points = " + points));
     
+    const [date, setDate] = useState(new Date());
+    const [showTime, setShowTime] = useState(false);
+    const onDateChange = (newDate) => {
+        setDate(newDate);
+        console.log(newDate.toDateString());
+    }
     return (
         <>
             <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}</h2>
@@ -29,9 +37,28 @@ function Member(props) {
                 minDate = {minDate}
                 maxDate = {maxDate}
                 tileContent = {<p></p>}
-                onClickDay = {(value, event) => handleClick(value)}
+/*                 onClickDay = {(value, event) => handleClick(value)} */
+                onChange={onDateChange}
+                value={date}
+                onClickDay={() => setShowTime(true)}
                 />
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
+
+{/*                 {date.length > 0 ? (
+                <p>
+                    <span>Start:</span>
+                    {date[0].toDateString()}
+                    &nbsp;
+                    &nbsp;
+                    <span>End:</span>{date[1].toDateString()}
+                </p>
+                        ) : (
+                <p>
+                    <span>Default selected date:</span>{date.toDateString()}
+                </p> 
+                        )
+                } */}
+                <Calendar_display showTime={showTime} date={date}/>
             </body>
         </>
     )
