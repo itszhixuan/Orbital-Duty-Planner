@@ -26,7 +26,6 @@ function Time_slots(props) {
       ...tasks,
       {
         description: description,
-        isComplete:false
       }
     ];
     setTasks(newTasks);
