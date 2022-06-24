@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Calendar from 'react-calendar';
 
 
-const time = ['Day Shift','Night Shift']
+const time = ['08:00-10:00', '10:00-12:00', '12:00-14:00', '14:00-16:00', '16:00-18:00']
 
 
 function Time_slots(props) {
@@ -34,16 +34,18 @@ function Time_slots(props) {
   }
 
 return (
-    <div className="times">
+    <div>
       <div>
         <div>
           <p>You are looking at shifts for {event} {props.date.toDateString()} </p>
+          <p>Please select dates that you are unavailable/would like to block out</p>
+          
         </div>
         <form onSubmit={handleAddTask} className="scrolling_for_shifts">
           {time.map(times => {
             return (
             <div>
-              <button className="current-events-button"
+              <button className="calendar-button"
               onClick={(event) => setNewTaskText(event.target.innerText + " " + props.date.toDateString())}
               value={newTaskText} 
               onChange={(e)=> displayInfo(e)}>
@@ -57,8 +59,8 @@ return (
       </div>
 
       <div className="scrolling-for-list">
-        <h2>Current List:</h2>
-        <table>
+        <p>Current list of blocked out dates:</p>
+        <table className='center'>
           <thead>
             <th>No.</th>
             <th>Selected</th>
