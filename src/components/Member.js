@@ -44,21 +44,11 @@ function Member(props) {
                 />
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
 
-{/*                 {date.length > 0 ? (
-                <p>
-                    <span>Start:</span>
-                    {date[0].toDateString()}
-                    &nbsp;
-                    &nbsp;
-                    <span>End:</span>{date[1].toDateString()}
-                </p>
-                        ) : (
-                <p>
-                    <span>Default selected date:</span>{date.toDateString()}
-                </p> 
-                        )
-                } */}
-                <Calendar_display showTime={showTime} date={date}/>
+                <Calendar_display 
+                showTime={showTime}
+                date={date}
+                currentEvent={currentEvent}
+                />
             </body>
         </>
     )

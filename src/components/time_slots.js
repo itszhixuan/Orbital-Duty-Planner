@@ -1,9 +1,11 @@
 import React from 'react'
 import {useState} from 'react';
 import Calendar from 'react-calendar';
+import { database, auth} from '../Firebase_config';
+import { push, set, ref } from "firebase/database";
 
 
-const time = ['08:00-10:00', '10:00-12:00', '12:00-14:00', '14:00-16:00', '16:00-18:00']
+const time = ['Day Shift', 'Night Shift']
 
 
 function Time_slots(props) {
@@ -12,6 +14,7 @@ function Time_slots(props) {
   const [info, setInfo] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [newTaskText, setNewTaskText] = useState("");
+  const currentEvent = props.currentEvent;
 
   function displayInfo(e) {
     setInfo(true);
@@ -26,11 +29,25 @@ function Time_slots(props) {
       ...tasks,
       {
         description: description,
-        isComplete:false
       }
     ];
     setTasks(newTasks);
     console.log(newTasks);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    addEventToDatabase(auth.currentUser.uid, currentEvent.eventKey);
+  }
+  function addEventToDatabase(profileUID, eventKey) {
+    const eventRef = ref(database, "events/" + eventKey + "/" + "users/" + profileUID + "/inputs/")
+    console.log("Event Key: " + eventKey);
+    /* const inputsRef = push(eventRef);
+    const inputKey = inputsRef.key;
+    console.log("User Input key: " + inputKey); */
+    set(eventRef, {
+      unavailableDates: tasks,/* 
+      inputKey : inputKey, */
+    });
   }
 
 return (
@@ -76,6 +93,9 @@ return (
         </tbody>
         </table>
       </div>
+      <form onSubmit={handleSubmit}>
+        <button type='submit' value='Create' className='learnmore-button'> Submit </button>
+      </form>
     </div>
   )
 }
