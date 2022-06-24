@@ -18,6 +18,7 @@ function Profile(props) {
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
 
+    //checks if events are initialised
     if (init) {
         setInit(false);
         const eventRef = ref(database, 'users/' + auth.currentUser.uid);

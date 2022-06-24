@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { database, auth} from '../Firebase_config';
-import { push, set, ref } from "firebase/database";
+import { push, set, ref, update } from "firebase/database";
 
 function AddEvent(props) {
 
@@ -13,6 +13,13 @@ function AddEvent(props) {
     const setActive = props.setActive; 
     const events = props.events;
     const setEvents = props.setEvents;
+    let eventComponent = {
+            eventName: eventName,
+            numberOfMembers: numberOfMembers,
+            startDate: startDate,
+            endDate: endDate,
+            hours: hours,
+    }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -21,16 +28,10 @@ function AddEvent(props) {
     }
 
     function addEvent(newKey) {
+        eventComponent.eventKey = newKey;
         const newEvents = [
             ...events,
-            {
-                eventName: eventName,
-                numberOfMembers: numberOfMembers,
-                startDate: startDate,
-                endDate: endDate,
-                hours: hours,
-                eventKey: newKey
-            }
+            eventComponent
         ];
         setEvents(newEvents);
         setActive("Profile");
@@ -38,18 +39,25 @@ function AddEvent(props) {
 
     function addEventToDatabase(profileUID) {
         const profileRef = ref(database, "users/" + profileUID);
-        
         const eventRef = push(profileRef);
         const newKey = eventRef.key;
+
+        const newRef = ref(database, "events");
+
+        
         console.log("Event key: " + newKey);
-        set(eventRef, {
-            eventName: eventName,
-            numberOfMembers: numberOfMembers,
-            startDate: startDate,
-            endDate: endDate,
-            hours: hours,
-            eventKey : newKey
-          });
+        eventComponent.eventKey = newKey;
+        
+        const updates = {};
+        updates["users/" + profileUID + "/" + newKey] = eventComponent;
+        updates["events"] = eventComponent;
+
+        update(ref(database), updates);
+/*
+        set(newRef, eventComponent);
+        set(eventRef, eventComponent);
+        */
+        
         return newKey;
     }
     
