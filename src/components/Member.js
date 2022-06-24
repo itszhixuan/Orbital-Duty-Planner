@@ -44,8 +44,11 @@ function Member(props) {
                 />
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
 
-                <Calendar_display showTime={showTime} date={date}/>
-                <button className='learnmore-button'> Submit </button>
+                <Calendar_display 
+                showTime={showTime}
+                date={date}
+                currentEvent={currentEvent}
+                />
             </body>
         </>
     )

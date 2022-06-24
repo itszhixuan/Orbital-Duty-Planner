@@ -7,7 +7,11 @@ function Calendar_display(props) {
  
     return (
     <div>
-    {props.showTime ? <Time_slots date={props.date}/> : null}
+    {props.showTime ? 
+    <Time_slots 
+    date={props.date}
+    currentEvent={props.currentEvent}
+    /> : null}
     </div>
     )
 }
