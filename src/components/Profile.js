@@ -73,9 +73,9 @@ function Profile(props) {
 
     const eventList = events.map((e) => 
         <li>
-            <label>{e.eventName}  </label>         
-            <button onClick ={() => handleMember(e)} > Choose shifts</button>
-            <button onClick={() => deleteEvent(e)}> Remove</button>
+            <label className="current-events-left">{e.eventName}  </label>         
+            <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
+            <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
         </li>
     )
 
@@ -123,15 +123,16 @@ function Profile(props) {
             {
                 active === "Profile" 
                 ? <> 
-                    <h2> Hello, {user.email} !</h2>
-                    <h2> Create or join an event!</h2>
-                    <ul>
+                <div className='event-page'>
+                    <h2> Hello, {user.email}!</h2>
+                    <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
+                    <button onClick = {logout} className="learnmore-button">Log out</button>
+                    <h2> Current Events: </h2>
+                    <ul className="current-events-list">
                         {eventList}
                     </ul>
-                    
-                    <button onClick = {() => setActive("AddEvent")}> Create Event</button>
-                    <button onClick = {logout}>Log out</button>
 
+                </div>
                 </>
                 : active === "AddEvent" 
                 ?<AddEvent 

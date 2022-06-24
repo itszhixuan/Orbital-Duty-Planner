@@ -63,34 +63,36 @@ function AddEvent(props) {
     
     return (
         <>
-            <h2>Add an event!</h2>
-            <form onSubmit={handleSubmit}>
-                <label >
-                    Name of event:
-                    <input type = 'text' onChange={(e) => setEventName(e.target.value)} />
-                </label>
-                <label>
-                    Total number of members:
-                    <input type = 'number' onChange={(e) => setNumberOfMembers(e.target.value)}/>
-                </label>
-                <label>
-                    Start Date:
-                    <input type = 'datetime-local' onChange={(e) => setStartDate(e.target.value)}/>
-                </label>
-                <label>
-                    End Date:
-                    <input type = 'datetime-local' onChange={(e) => setEndDate(e.target.value)}/>
-                </label>
-                <label>
-                    Total hours per slot:
-                    <input type = 'number' onChange={(e) => setHours(e.target.value)}/>
-                </label>
-                <input type="submit" value="Create" />
-            </form>
-            <div>
-                <button onClick = {() => setActive("Profile")}> Return to your profile</button>
+            <div className="event-page">
+                <h2>Add an event!</h2>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <p className="event-left">Name of Event: </p> 
+                        <input type = 'text' onChange={(e) => setEventName(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Total Number of Members: </p> 
+                        <input type = 'number' onChange={(e) => setNumberOfMembers(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Start Date: </p> 
+                        <input type = 'datetime-local' onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">End Date: </p> 
+                        <input type = 'datetime-local' onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Total Hours per Slot: </p> 
+                        <input type = 'number' onChange={(e) => setHours(e.target.value)} className="event-right"/>
+                    </div>
+                    <input type="submit" value="Create" className='learnmore-button'/>
+                    <button onClick = {() => setActive("Profile")} className="learnmore-button"> Return to your profile</button>
+                </form>
+{/*                 <div>
+                    <button onClick = {() => setActive("Profile")} className="enter-field"> Return to your profile</button>
+                </div> */}
             </div>
-            
         </>
     )
 }

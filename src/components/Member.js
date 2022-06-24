@@ -23,7 +23,7 @@ function Member(props) {
     
     return (
         <>
-            <h2> Choose your dates! {currentEvent.startDate}</h2>
+            <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}</h2>
             <body>
                 <Calendar
                 minDate = {minDate}
@@ -31,7 +31,7 @@ function Member(props) {
                 tileContent = {<p></p>}
                 onClickDay = {(value, event) => handleClick(value)}
                 />
-                <button onClick = {() => setActive("Profile")} >Return to profile</button>
+                <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
             </body>
         </>
     )
