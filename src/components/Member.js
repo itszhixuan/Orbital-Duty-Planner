@@ -48,6 +48,7 @@ function Member(props) {
                 showTime={showTime}
                 date={date}
                 currentEvent={currentEvent}
+                setActive = {setActive}
                 />
             </body>
         </>

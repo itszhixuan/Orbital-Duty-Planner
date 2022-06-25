@@ -8,7 +8,12 @@ function AddEvent(props) {
     const [numberOfMembers, setNumberOfMembers] = useState("");
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [hours, setHours] = useState("");
+  /*   const [hours, setHours] = useState(""); */
+    const [dayShiftStartTime, setDayShiftStart] = useState("");
+    const [nightShiftStartTime, setNightShiftStart] = useState("");
+    const [dayShiftHours, setDayShiftHours] = useState("");
+    const [nightShiftHours, setNightShiftHours] = useState("");
+    
     
     const setActive = props.setActive; 
     const events = props.events;
@@ -28,7 +33,11 @@ function AddEvent(props) {
                 numberOfMembers: numberOfMembers,
                 startDate: startDate,
                 endDate: endDate,
-                hours: hours,
+                /* hours: hours, */
+                dayShiftStartTime: dayShiftStartTime,
+                nightShiftStartTime: nightShiftStartTime,
+                dayShiftHours: dayShiftHours,
+                nightShiftHours: nightShiftHours,
                 eventKey: newKey
             }
         ];
@@ -47,7 +56,11 @@ function AddEvent(props) {
             numberOfMembers: numberOfMembers,
             startDate: startDate,
             endDate: endDate,
-            hours: hours,
+            /* hours: hours, */
+            dayShiftStartTime: dayShiftStartTime,
+            nightShiftStartTime: nightShiftStartTime,
+            dayShiftHours: dayShiftHours,
+            nightShiftHours: nightShiftHours,
             eventKey : newKey
           });
         return newKey;
@@ -68,15 +81,31 @@ function AddEvent(props) {
                     </div>
                     <div>
                         <p className="event-left">Start Date: </p> 
-                        <input type = 'datetime-local' onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">End Date: </p> 
-                        <input type = 'datetime-local' onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
                     </div>
-                    <div>
+{/*                     <div>
                         <p className="event-left">Total Hours per Slot: </p> 
                         <input type = 'number' onChange={(e) => setHours(e.target.value)} className="event-right"/>
+                    </div> */}
+                    <div>
+                        <p className="event-left">Starting time for Day Shift: </p> 
+                        <input type = 'time' onChange={(e) => setDayShiftStart(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Starting time for Night Shift: </p> 
+                        <input type = 'time' onChange={(e) => setNightShiftStart(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Number of Hours for Day Shift: </p> 
+                        <input type = 'number' onChange={(e) => setDayShiftHours(e.target.value)} className="event-right"/>
+                    </div>
+                    <div>
+                        <p className="event-left">Number of Hours for Night Shift: </p> 
+                        <input type = 'number' onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
                     </div>
                     <input type="submit" value="Create" className='learnmore-button'/>
                     <button onClick = {() => setActive("Profile")} className="learnmore-button"> Return to your profile</button>

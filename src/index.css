@@ -337,7 +337,7 @@ nav-img{
 }
 
 .event-left{
-  width: 20%;
+  width: 30%;
   direction: ltr;
   text-align: left;
   font-size: 20px;
@@ -407,6 +407,7 @@ nav-img{
   margin: 0;
   padding-top: 20px;
   max-height: 150px;
+  min-height: 150px;
   overflow: auto;
   direction: ltr;
   text-align: center;

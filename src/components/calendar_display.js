@@ -5,12 +5,15 @@ import React from 'react'
 
 function Calendar_display(props) {
  
+    const setActive = props.setActive; 
+
     return (
     <div>
     {props.showTime ? 
     <Time_slots 
     date={props.date}
     currentEvent={props.currentEvent}
+    setActive = {setActive}
     /> : null}
     </div>
     )

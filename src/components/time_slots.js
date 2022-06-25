@@ -15,6 +15,7 @@ function Time_slots(props) {
   const [tasks, setTasks] = useState([]);
   const [newTaskText, setNewTaskText] = useState("");
   const currentEvent = props.currentEvent;
+  const setActive = props.setActive; 
 
   function displayInfo(e) {
     setInfo(true);
@@ -37,6 +38,7 @@ function Time_slots(props) {
   function handleSubmit(event) {
     event.preventDefault();
     addEventToDatabase(auth.currentUser.uid, currentEvent.eventKey);
+    setActive("Profile");
   }
   function addEventToDatabase(profileUID, eventKey) {
     const eventRef = ref(database, "events/" + eventKey + "/" + "users/" + profileUID + "/inputs/")
@@ -94,7 +96,11 @@ return (
         </table>
       </div>
       <form onSubmit={handleSubmit}>
-        <button type='submit' value='Create' className='learnmore-button'> Submit </button>
+        <button 
+        type='submit'
+        value='Create'
+        className='learnmore-button'
+        > Submit </button>
       </form>
     </div>
   )
