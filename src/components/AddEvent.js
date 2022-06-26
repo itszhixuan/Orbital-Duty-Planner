@@ -41,22 +41,24 @@ function AddEvent(props) {
         const profileRef = ref(database, "users/" + profileUID);
         const eventRef = push(profileRef);
         const newKey = eventRef.key;
-
-        const newRef = ref(database, "events");
-
-        
         console.log("Event key: " + newKey);
-        eventComponent.eventKey = newKey;
-        
-        const updates = {};
+
+
+
+
+/* 
+        const newRef = ref(database, "events");
+       const updates = {};
         updates["users/" + profileUID + "/" + newKey] = eventComponent;
         updates["events"] = eventComponent;
+set(newRef, eventComponent);
+        update(ref(database), updates);*/
 
-        update(ref(database), updates);
-/*
-        set(newRef, eventComponent);
+        eventComponent.eventKey = newKey;
+        
+        
         set(eventRef, eventComponent);
-        */
+        
         
         return newKey;
     }

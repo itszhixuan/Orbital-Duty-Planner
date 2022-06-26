@@ -31,6 +31,7 @@ function Member(props) {
                 tileContent = {<p></p>}
                 onClickDay = {(value, event) => handleClick(value)}
                 />
+                
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
             </body>
         </>
