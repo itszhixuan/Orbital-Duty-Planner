@@ -35,7 +35,11 @@ function Profile(props) {
                             numberOfMembers: eventData.numberOfMembers,
                             startDate: eventData.startDate,
                             endDate: eventData.endDate,
-                            hours: eventData.hours,
+                            /* hours: eventData.hours, */
+                            dayShiftStartTime: eventData.dayShiftStartTime,
+                            nightShiftStartTime: eventData.nightShiftStartTime,
+                            dayShiftHours: eventData.dayShiftHours,
+                            nightShiftHours: eventData.nightShiftHours,
                             eventKey: eventData.eventKey
                         }
                     ];
@@ -90,6 +94,8 @@ function Profile(props) {
 
     function handleMember(member) {
         setCurrentEvent(member);
+        console.log("Profile member key:" + member.eventKey);
+        console.log("Start Date:" + member.eventName);
         /*
         setCurrentWeekendPoints(member.weekendPoints);
         setCurrentWeekdayPoints(member.weekdayPoints);
