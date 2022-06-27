@@ -1,3 +1,6 @@
+<h1>README File </h1>
+<h1> Table of Contents </h1>
+
 - [Team AI-5](#team-ai-5)
   - [Proof of Concept](#proof-of-concept)
   - [Motivation](#motivation)
@@ -236,6 +239,20 @@ For the organisation to start the process of creating a schedule, they will be r
 <img src=https://user-images.githubusercontent.com/88086170/175861811-b87e9c70-90c6-4aab-b833-8c91b853e1c3.png width="500" height="700">
 
 ## Software Engineering Practices
+<ul>
+	<li>Version Control</li>
+	<p>
+Using Github and Git, we are able to implement version control within our project. In an event where the new code used to run encounters any unexpected issues, we are able to reset our code back to the previous version that would run as expected. This also allows us to keep track of the changes made to different files as the project progresses, and allows us to refer back to past approaches and methods.
+	</p>
+	<li>Continuous Integration</li>
+	<p>
+		To increase the efficiency and progress done on the project, we have adopted the practice of continuous integration. This allows both of the contributors to code at the same time (on different branches) and subsequently integrating the changes from both contributors into a final version. The branch 'main' has been used as the central hub for our project code and new changes merged into the working code.
+	</p>
+	<li>Design Usability</li>
+	<p>
+		As our website has a wide range of target audience that can vary in age, we decided to exclude unnecessary buttons and features within our app so that the main objectives of the project can be delivered effectively. 
+	</p>
+</ul>
 
 ## Project Log
 <link>
