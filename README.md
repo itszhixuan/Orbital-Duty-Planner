@@ -44,6 +44,7 @@ We have some dummy events that you may use to reduce the hassle of joining event
 		<li> -N5_D65OPMkQatU9CyFd </li>
 	</ul>
 </ul>
+For emails, you may decide to use temporary emails generated from https://temp-mail.org/en/ to try out our website.
 
 ## Motivation
 Have you ever experienced the difficulty of creating a schedule for an organisation/club that fully integrates the demands, preferences and availability of each employee/member? Almost every organisation and club will rely on a shift system to organise events/ensure that its operations run smoothly. However, the process of creating a schedule that caters to everyone's availability while having the meet the demands/requirements of their organisation (such as having a minimum number of shifts per month) can become very tedious and time-consuming. As the number of employees/members increase, the task at hand also gets exponentially harder.
