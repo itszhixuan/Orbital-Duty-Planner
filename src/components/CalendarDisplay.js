@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import Calendar from 'react-calendar';
-import Time_slots from './time_slots'
+import TimeSlots from './TimeSlots'
 import React from 'react'
 
 function Calendar_display(props) {
@@ -10,7 +10,7 @@ function Calendar_display(props) {
     return (
     <div>
     {props.showTime ? 
-    <Time_slots 
+    <TimeSlots 
     date={props.date}
     currentEvent={props.currentEvent}
     setActive = {setActive}

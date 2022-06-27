@@ -41,7 +41,7 @@ function Time_slots(props) {
     setActive("Profile");
   }
   function addEventToDatabase(profileUID, eventKey) {
-    const eventRef = ref(database, "events/" + eventKey + "/" + "users/" + profileUID + "/inputs/")
+    const eventRef = ref(database, "events/" + eventKey + "/users/" + profileUID + "/inputs/")
     console.log("Event Key: " + eventKey);
     /* const inputsRef = push(eventRef);
     const inputKey = inputsRef.key;
@@ -65,7 +65,7 @@ return (
             return (
             <div>
               <button className="calendar-button"
-              onClick={(event) => setNewTaskText(event.target.innerText + " " + props.date.toDateString())}
+              onClick={(event) => setNewTaskText(event.target.innerText + "-" + props.date.toDateString())}
               value={newTaskText} 
               onChange={(e)=> displayInfo(e)}>
               {times} 

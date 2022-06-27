@@ -28,6 +28,8 @@ function AddEvent(props) {
             nightShiftStartTime: nightShiftStartTime,
             dayShiftHours: dayShiftHours,
             nightShiftHours: nightShiftHours,
+            planner: auth.currentUser.uid,
+            
 
     }
 
@@ -56,20 +58,17 @@ function AddEvent(props) {
 
 
 
-/* 
+    /* 
         const newRef = ref(database, "events");
        const updates = {};
         updates["users/" + profileUID + "/" + newKey] = eventComponent;
         updates["events"] = eventComponent;
 set(newRef, eventComponent);
-        update(ref(database), updates);*/
+        update(ref(database), updates);
+        */
 
         eventComponent.eventKey = newKey;
-        
-        
         set(eventRef, eventComponent);
-        
-        
         return newKey;
     }
     
@@ -114,6 +113,12 @@ set(newRef, eventComponent);
                         <p className="event-left">Number of Hours for Night Shift: </p> 
                         <input type = 'number' onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
                     </div>
+                    {/*
+                    <div>
+                        <p className= "event-left"> Email of members</p> 
+                        <input type = "text" onChange = {(e) => handleSubmitEmails(e.target.value) }/>
+                    </div>
+                    */}
                     <input type="submit" value="Create" className='learnmore-button'/>
                     <button onClick = {() => setActive("Profile")} className="learnmore-button"> Return to your profile</button>
                 </form>
