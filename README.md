@@ -19,6 +19,7 @@
   - [Component Interaction](#component-interaction)
   - [Timeline](#timeline)
   - [Tech Stack](#tech-stack)
+  - [Firebase Database Structure](#firebase-database-structure)
   - [Software Engineering Practices](#software-engineering-practices)
   - [Project Log](#project-log)
 
@@ -30,6 +31,7 @@ Proposed Level of Achievement: Apollo 11
 
 ## Proof of Concept
 Our Website can be accessed through the following link: 
+
 We have some dummy accounts that you may use to reduce the hassle of creating your own accounts.
 
 ## Motivation
@@ -80,15 +82,22 @@ After logging in, the users will be directed to their profile page which will sh
 
 #### Event Creator
 For the organisation to start the process of creating a schedule, they will be required to fill in the details and requirements of the event. The details entered will be shown to participants/members when they indicate their preferences and availability. The Start and End Dates will also serve as a block out feature, where Members will not be able to select dates that fall out of the range.
+![event](https://user-images.githubusercontent.com/88086170/175896919-0a75ccd7-8fb3-4391-b914-b7d32aa49080.png)
 
 #### Selection of Dates
+When the "Choose Shifts" button is clicked in the Profile Page's list of events, the user will be brought to a page with a calendar and available dates for their choosing. 
+![choose1](https://user-images.githubusercontent.com/88086170/175897634-e484fc90-9923-41be-9dc5-c6b1c3e60e0d.png)
+When the date of interest is clicked, the shifts and a list of their selection will appear. The shifts that are selected will be added into the list on the right, which serves as a visual representation of all the selections that they have made so far.
+![choose2](https://user-images.githubusercontent.com/88086170/175897980-b89b4692-c7e9-421a-ac99-2a297082d64b.png)
+When the user is done with their selection, they can submit their inputs and selection by clicking on the Submit button. This will send the inputs into the Firebase real-time database that would subsequently be used to generate the schedule.
 
-
----------------------Incomplete------------------------------
+---------------------can add the generate schedule part------------------------------
 
 ## Program Flow
+![program flow](https://user-images.githubusercontent.com/88086170/175902254-7ed1e266-1004-4ec7-b1c0-78e5bd0f6690.png)
 
 ## Component Interaction
+![component interaction](https://user-images.githubusercontent.com/88086170/175901714-51fbccd5-66b5-4f0f-8f1a-5492600c741d.png)
 
 ## Timeline
 
@@ -239,6 +248,9 @@ For the organisation to start the process of creating a schedule, they will be r
 ![tech_stack](https://user-images.githubusercontent.com/88086170/175878216-cbdbd51e-5a99-4994-afef-63616798d409.png)
 
 
+## Firebase Database Structure
+![firebase](https://user-images.githubusercontent.com/88086170/175911939-eced5141-aecb-41a7-a788-6b058c1e1f2e.png)
+
 ## Software Engineering Practices
 <ul>
 	<li>Version Control</li>
@@ -259,6 +271,3 @@ Using Github and Git, we are able to implement version control within our projec
 <link>
 	https://docs.google.com/spreadsheets/d/1OHVIYzQE0Wkcr0wnMOQEhwmHTUs43PNd9bNk9iyHXno/edit#gid=0
 </link>
-
-
-
