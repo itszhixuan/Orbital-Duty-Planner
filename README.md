@@ -16,6 +16,7 @@
   - [Component Interaction](#component-interaction)
   - [Timeline](#timeline)
   - [Tech Stack](#tech-stack)
+  - [Software Engineering Practices](#software-engineering-practices)
   - [Project Log](#project-log)
 
 
@@ -233,6 +234,8 @@ For the organisation to start the process of creating a schedule, they will be r
 
 ## Tech Stack
 <img src=https://user-images.githubusercontent.com/88086170/175861811-b87e9c70-90c6-4aab-b833-8c91b853e1c3.png width="500" height="700">
+
+## Software Engineering Practices
 
 ## Project Log
 <link>
