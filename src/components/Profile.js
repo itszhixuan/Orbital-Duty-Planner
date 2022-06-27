@@ -4,9 +4,11 @@ import {auth} from "../Firebase_config"
 import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
-import { get, ref, remove } from "firebase/database";
+import { get, onChildAdded, ref, remove, set, update } from "firebase/database";
 import Calendar from "react-calendar";
 import plan from "../Helper Functions/sorter";
+import DisplayCode from "./DisplayCode";
+import InputCode from "./InputCode";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -55,13 +57,22 @@ function Profile(props) {
                 console.error(error);
         });
     }
+    onChildAdded(ref(database, "users/" + auth.currentUser.uid), (event) =>{
+        set(ref(database, "events/" + event.key ), {
+            emails : event.val().emails
+        });
+        set(ref(database, "events/" + event.key ), {
+            planner : auth.currentUser.uid
+        });
+    })
 
     const eventList = events.map((e) => 
         <li>
             <label className="current-events-left">{e.eventName}  </label>         
             <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
             <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
-            <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
+            <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
+            {/*<button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>*/}
         </li>
     )
 
@@ -76,6 +87,11 @@ function Profile(props) {
 
     function handlePlan(event){
         plan(event);
+    }
+
+    function showCode (event) {
+        setCurrentEvent(event);
+        setActive("DisplayCode");
     }
 
     function handleMember(member) {
@@ -118,11 +134,14 @@ function Profile(props) {
                 <div className='event-page'>
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
+                    <button onClick={() => setActive("InputCode")} className = "learnmore-button">Input code</button>
                     <button onClick = {logout} className="learnmore-button">Log out</button>
+
                     <h2> Current Events: </h2>
                     <ul className="current-events-list">
                         {eventList}
                     </ul>
+
                     <Calendar 
                         tileContent={({activeStartDate, date, view}) => {
                             const a = get(ref(database, "users/" + auth.currentUser.uid + "/ConfirmedDates/" + date));
@@ -140,6 +159,20 @@ function Profile(props) {
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
+                />
+
+                :active === "DisplayCode"
+                ?<DisplayCode 
+                    currentEvent = {currentEvent}
+                    setActive = {setActive}
+                />
+                
+                :active === "InputCode"
+                ? <InputCode
+                    setActive = {setActive}
+                    events = {events}
+                    setEvents = {setEvents}
+
                 />
 
                 :<Member 

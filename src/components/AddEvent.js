@@ -13,11 +13,18 @@ function AddEvent(props) {
     const [nightShiftStartTime, setNightShiftStart] = useState("");
     const [dayShiftHours, setDayShiftHours] = useState("");
     const [nightShiftHours, setNightShiftHours] = useState("");
+    const [emails, setEmails] = useState([""]);
+    const [em, setEm] = useState("");
     
     
     const setActive = props.setActive; 
     const events = props.events;
     const setEvents = props.setEvents;
+    const emailList = emails.map((e) => 
+        <li>
+            {e}
+        </li>)
+
     let eventComponent = {
             eventName: eventName,
             numberOfMembers: numberOfMembers,
@@ -29,8 +36,7 @@ function AddEvent(props) {
             dayShiftHours: dayShiftHours,
             nightShiftHours: nightShiftHours,
             planner: auth.currentUser.uid,
-            
-
+            emails : emails,
     }
 
     function handleSubmit(event) {
@@ -70,6 +76,21 @@ set(newRef, eventComponent);
         eventComponent.eventKey = newKey;
         set(eventRef, eventComponent);
         return newKey;
+    }
+
+    function addEmail() {
+        const newEmails = [
+            ...emails,
+            em
+        ];
+        setEmails(newEmails);
+        console.log(em);
+        console.log(emails);
+    }
+
+    function handleEmailSubmit(e) {
+        e.preventDefault();
+        addEmail();
     }
     
     return (
@@ -113,6 +134,18 @@ set(newRef, eventComponent);
                         <p className="event-left">Number of Hours for Night Shift: </p> 
                         <input type = 'number' onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
                     </div>
+                        <div>
+                            <p className = "event-left"> Add Email addresses</p>
+                            <input onChange={(e) => setEm(e.target.value)} className = "event-right"/>
+                            <button onClick={handleEmailSubmit}>Add</button>
+                        </div>
+                    
+                    <div>
+                            {emailList}
+                        </div>
+
+                        
+                    
                     {/*
                     <div>
                         <p className= "event-left"> Email of members</p> 
