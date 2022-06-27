@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { database, auth} from '../Firebase_config';
-import { push, set, ref } from "firebase/database";
+import { push, set, ref, update } from "firebase/database";
 
 function AddEvent(props) {
 
@@ -18,6 +18,20 @@ function AddEvent(props) {
     const setActive = props.setActive; 
     const events = props.events;
     const setEvents = props.setEvents;
+    let eventComponent = {
+            eventName: eventName,
+            numberOfMembers: numberOfMembers,
+            startDate: startDate,
+            endDate: endDate,
+           /* hours: hours, */
+            dayShiftStartTime: dayShiftStartTime,
+            nightShiftStartTime: nightShiftStartTime,
+            dayShiftHours: dayShiftHours,
+            nightShiftHours: nightShiftHours,
+            planner: auth.currentUser.uid,
+            
+
+    }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -26,20 +40,10 @@ function AddEvent(props) {
     }
 
     function addEvent(newKey) {
+        eventComponent.eventKey = newKey;
         const newEvents = [
             ...events,
-            {
-                eventName: eventName,
-                numberOfMembers: numberOfMembers,
-                startDate: startDate,
-                endDate: endDate,
-                /* hours: hours, */
-                dayShiftStartTime: dayShiftStartTime,
-                nightShiftStartTime: nightShiftStartTime,
-                dayShiftHours: dayShiftHours,
-                nightShiftHours: nightShiftHours,
-                eventKey: newKey
-            }
+            eventComponent
         ];
         setEvents(newEvents);
         setActive("Profile");
@@ -47,22 +51,24 @@ function AddEvent(props) {
 
     function addEventToDatabase(profileUID) {
         const profileRef = ref(database, "users/" + profileUID);
-        
         const eventRef = push(profileRef);
         const newKey = eventRef.key;
         console.log("Event key: " + newKey);
-        set(eventRef, {
-            eventName: eventName,
-            numberOfMembers: numberOfMembers,
-            startDate: startDate,
-            endDate: endDate,
-            /* hours: hours, */
-            dayShiftStartTime: dayShiftStartTime,
-            nightShiftStartTime: nightShiftStartTime,
-            dayShiftHours: dayShiftHours,
-            nightShiftHours: nightShiftHours,
-            eventKey : newKey
-          });
+
+
+
+
+    /* 
+        const newRef = ref(database, "events");
+       const updates = {};
+        updates["users/" + profileUID + "/" + newKey] = eventComponent;
+        updates["events"] = eventComponent;
+set(newRef, eventComponent);
+        update(ref(database), updates);
+        */
+
+        eventComponent.eventKey = newKey;
+        set(eventRef, eventComponent);
         return newKey;
     }
     
@@ -107,6 +113,12 @@ function AddEvent(props) {
                         <p className="event-left">Number of Hours for Night Shift: </p> 
                         <input type = 'number' onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
                     </div>
+                    {/*
+                    <div>
+                        <p className= "event-left"> Email of members</p> 
+                        <input type = "text" onChange = {(e) => handleSubmitEmails(e.target.value) }/>
+                    </div>
+                    */}
                     <input type="submit" value="Create" className='learnmore-button'/>
                     <button onClick = {() => setActive("Profile")} className="learnmore-button"> Return to your profile</button>
                 </form>

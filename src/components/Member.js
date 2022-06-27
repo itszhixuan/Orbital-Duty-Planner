@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar } from "react-calendar";
-import Calendar_display from "./calendar_display";
+import CalendarDisplay from "./CalendarDisplay";
 
 function Member(props) {
     const currentEvent = props.currentEvent;
@@ -42,9 +42,10 @@ function Member(props) {
                 value={date}
                 onClickDay={() => setShowTime(true)}
                 />
+                
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
 
-                <Calendar_display 
+                <CalendarDisplay 
                 showTime={showTime}
                 date={date}
                 currentEvent={currentEvent}

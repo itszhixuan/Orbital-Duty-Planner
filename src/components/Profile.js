@@ -5,6 +5,8 @@ import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
 import { get, ref, remove } from "firebase/database";
+import Calendar from "react-calendar";
+import plan from "../Helper Functions/sorter";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -18,6 +20,7 @@ function Profile(props) {
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
 
+    //checks if events are initialised
     if (init) {
         setInit(false);
         const eventRef = ref(database, 'users/' + auth.currentUser.uid);
@@ -52,33 +55,13 @@ function Profile(props) {
                 console.error(error);
         });
     }
-    
-    
-   /* eventRef.once('value', (eventlist) => {
-        
-                eventlist.forEach((event) => {
-                const eventData = event.val();
-                const newEvents = [
-                    ...events, 
-                    {
-                        eventName: eventData.eventName,
-                        numberOfMembers: eventData.numberOfMembers,
-                        startDate: eventData.startDate,
-                        endDate: eventData.endDate,
-                        hours: eventData.hours
-                    }
-                ];
-                setEvents(newEvents);
-            });
-           
-        });
-         */
 
     const eventList = events.map((e) => 
         <li>
             <label className="current-events-left">{e.eventName}  </label>         
             <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
             <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
+            <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
         </li>
     )
 
@@ -89,6 +72,10 @@ function Profile(props) {
         } catch (error) {
             console.log(error.message);
         }
+    }
+
+    function handlePlan(event){
+        plan(event);
     }
 
     function handleMember(member) {
@@ -136,6 +123,16 @@ function Profile(props) {
                     <ul className="current-events-list">
                         {eventList}
                     </ul>
+                    <h2> Your active calendar: </h2>
+                    <Calendar 
+                        tileContent={({activeStartDate, date, view}) => {
+                            const a = get(ref(database, "users/" + auth.currentUser.uid + "/ConfirmedDates/" + date));
+                            if (a && view === "month") {
+                                <p>{a.eventName} + {a.shift}</p>
+                            } 
+                        }
+                        }
+                    />
 
                 </div>
                 </>
