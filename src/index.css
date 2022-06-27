@@ -369,8 +369,8 @@ nav-img{
 .current-events-button{
   display: inline-block;
   text-decoration: none;
-  width: 17%;
-  color: white;
+/*   width: 15%;
+ */  color: white;
   border: 1px white solid;
   padding-top: 10px;
   padding-right: 30px;
@@ -390,7 +390,7 @@ nav-img{
 }
 
 .current-events-left{
-  width: 40%;
+  width: 30%;
   direction: ltr;
   text-align: left;
   font-size: 16px;
@@ -482,6 +482,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.display_code h1{
+  text-align: center;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+.display_code h2{
+  text-align: center;
+  font-weight: 600;
+  font-size: 25px;
+  padding-bottom: 20px;
 }
 
 /* ~~~~CSS styling for react-calandar~~~~ */
