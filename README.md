@@ -12,6 +12,8 @@
       - [Profile Page](#profile-page)
       - [Event Creator](#event-creator)
       - [Selection of Dates](#selection-of-dates)
+  - [Program Flow](#program-flow)
+  - [Component Interaction](#component-interaction)
   - [Timeline](#timeline)
   - [Tech Stack](#tech-stack)
   - [Project Log](#project-log)
@@ -57,15 +59,19 @@ To attract the attention of our users, a simple page with our project goal will 
 
 #### About Page
 As the content on the Home Page is kept to the minimum, the About Page will provide more information on our goal and the key features of our project that will help to solve their problems.
+![about](https://user-images.githubusercontent.com/88086170/175862476-c754bc9f-e14e-4107-af73-6ff79023d93b.png)
+
 
 #### Login/Signup Page
 The login/signup page will prompt for their particulars, and will serve as the gate for the following user-catered features. To check for authentication, we utilised the feature provided by Firebase which helps us store new emails and passwords on their database. The login/signup page will also display errors that might occur when users do not meet the requirements. For example, if the password used when signing up is less than 6 characters, a prompt will appear to explain the issue. 
+![login](https://user-images.githubusercontent.com/88086170/175862742-7ba02d4e-3252-4d5a-ad1d-efc70adaa3c2.png)
 
 #### Footer
 A footer has also been attached to all of the pages mentioned above. Located at the bottom of the page, it displays some basic information and links are available to redirect visitors to our project code, posters and videos.
+![footer](https://user-images.githubusercontent.com/88086170/175862604-d8eca759-eb0e-4714-a7f9-a8a3b7c7bc1f.png)
 
 #### Profile Page
-After logging in, the users will be directed to their profile page which will showcase their existing list of events that they are involved in. For new users, the list of events would be empty. Buttons for users to create a new event and log out will also be shown on the profile page. The profile page serves as an overview on the events and features.
+After logging in, the users will be directed to their profile page which will showcase their existing list of events that they are involved in. For new users, the list of events would be empty. Buttons for users to create a new event and log out will also be shown on the profile page. The profile page serves as an overview on the events and features. The image below shows our goal:
 ![profile page](https://user-images.githubusercontent.com/88086170/173577609-8c252814-d207-425e-a7b9-1cc7abd8bd30.png)
 
 #### Event Creator
@@ -75,6 +81,10 @@ For the organisation to start the process of creating a schedule, they will be r
 
 
 ---------------------Incomplete------------------------------
+
+## Program Flow
+
+## Component Interaction
 
 ## Timeline
 
