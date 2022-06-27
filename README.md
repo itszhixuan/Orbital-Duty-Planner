@@ -175,7 +175,7 @@ For the organisation to start the process of creating a schedule, they will be r
 				<tr>
             <td>Generating schedule after inputs are taken</td>
             <td>Code sorting algorithm to display the optimum schedule</td>
-            <td>Johnathan Zhi Xuan</td>
+            <td>Zhi Xuan Johnathan</td>
 						<td rowspan=3>14 - 25 Jun</td>
         </tr>
 				<tr>
@@ -200,7 +200,7 @@ For the organisation to start the process of creating a schedule, they will be r
 				<tr>
             <td>Implementing duty swap feature</td>
             <td>Coordinate between two members to facilitate swapping</td>
-            <td>Johnathan Zhi Xuan</td>
+            <td>Zhi Xuan Johnathan</td>
 						<td>26 Jun - 6 Jul</td>
         </tr>
 				<tr>
@@ -222,9 +222,12 @@ For the organisation to start the process of creating a schedule, they will be r
 </table>
 
 ## Tech Stack
+<img src=https://user-images.githubusercontent.com/88086170/175861811-b87e9c70-90c6-4aab-b833-8c91b853e1c3.png width="500" height="700">
 
 ## Project Log
-
+<link>
+	https://docs.google.com/spreadsheets/d/1OHVIYzQE0Wkcr0wnMOQEhwmHTUs43PNd9bNk9iyHXno/edit#gid=0
+</link>
 
 
 
