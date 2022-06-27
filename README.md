@@ -1,15 +1,42 @@
+- [Team AI-5](#team-ai-5)
+  - [Proof of Concept](#proof-of-concept)
+  - [Motivation](#motivation)
+  - [Our Solution](#our-solution)
+  - [User Stories](#user-stories)
+  - [Features](#features)
+    - [Proposed website features:](#proposed-website-features)
+      - [Home Page](#home-page)
+      - [About Page](#about-page)
+      - [Login/Signup Page](#loginsignup-page)
+      - [Footer](#footer)
+      - [Profile Page](#profile-page)
+      - [Event Creator](#event-creator)
+      - [Selection of Dates](#selection-of-dates)
+  - [Timeline](#timeline)
+  - [Tech Stack](#tech-stack)
+  - [Project Log](#project-log)
+
+
 # Team AI-5
 Members: Lee Zhi Xuan, Johnathan Wee
 
 Proposed Level of Achievement: Apollo 11
 
+## Proof of Concept
+Our Website can be accessed through the following link: 
+We have some dummy accounts that you may use to reduce the hassle of creating your own accounts.
+
 ## Motivation
 Have you ever experienced the difficulty of creating a schedule for an organisation/club that fully integrates the demands, preferences and availability of each employee/member? Almost every organisation and club will rely on a shift system to organise events/ensure that its operations run smoothly. However, the process of creating a schedule that caters to everyone's availability while having the meet the demands/requirements of their organisation (such as having a minimum number of shifts per month) can become very tedious and time-consuming. As the number of employees/members increase, the task at hand also gets exponentially harder.
+
+Currently, most duty planning processes are done manually and there are limited tools available to speed up the process. Therefore, we felt that this repetitive process can be improved to increase efficiency.
 
 ## Our Solution
 To help reduce the tedious process, we aim to create a duty planning program that helps our user organise shifts and schedules that takes in other people's preferences and availibility.
 
-The src folder houses source codes and components that are available on our website.
+We opted to create a website (using React) to host our duty planning program as we felt that this was the simplest way for users to access our features.
+
+Since our project targets a wide audience (varying from part-timers to employees and managers), we created a profile page that lists out all of the events that the Member is part of. This can assist Members in keeping track of all the events and schedules that they have. 
 
 ## User Stories
 As a part-timer working in retail, I would like to have my preferences and availability factored in when taking up shifts.
@@ -25,25 +52,31 @@ Our project will include the following features:
 
 ### Proposed website features:
 #### Home Page
-To attract the attention of our users, a simple page with our project goal will be used as the Home Page. 
+To attract the attention of our users, a simple page with our project goal will be used as the Home Page. The "Click to learn more" button will redirect the users to our About Page, which will include more details on our project.
 ![homepage](https://user-images.githubusercontent.com/88086170/173574517-03556645-67e9-4968-a7d2-6d75bce5139f.png)
 
 #### About Page
 As the content on the Home Page is kept to the minimum, the About Page will provide more information on our goal and the key features of our project that will help to solve their problems.
 
 #### Login/Signup Page
-The login/signup page will prompt for their particulars, and will serve as the gate for the following user-catered features. To check for authentication, we utilised the feature provided by Firebase which helps us store new emails and passwords on their database.
+The login/signup page will prompt for their particulars, and will serve as the gate for the following user-catered features. To check for authentication, we utilised the feature provided by Firebase which helps us store new emails and passwords on their database. The login/signup page will also display errors that might occur when users do not meet the requirements. For example, if the password used when signing up is less than 6 characters, a prompt will appear to explain the issue. 
+
+#### Footer
+A footer has also been attached to all of the pages mentioned above. Located at the bottom of the page, it displays some basic information and links are available to redirect visitors to our project code, posters and videos.
 
 #### Profile Page
 After logging in, the users will be directed to their profile page which will showcase their existing list of events that they are involved in. For new users, the list of events would be empty. Buttons for users to create a new event and log out will also be shown on the profile page. The profile page serves as an overview on the events and features.
 ![profile page](https://user-images.githubusercontent.com/88086170/173577609-8c252814-d207-425e-a7b9-1cc7abd8bd30.png)
 
 #### Event Creator
-For the organisation to start the process of creating a schedule, they will be required to fill in the details and requirements of the event. The details entered will be shown to participants/members when they indicate their preferences and availability.
+For the organisation to start the process of creating a schedule, they will be required to fill in the details and requirements of the event. The details entered will be shown to participants/members when they indicate their preferences and availability. The Start and End Dates will also serve as a block out feature, where Members will not be able to select dates that fall out of the range.
+
+#### Selection of Dates
+
 
 ---------------------Incomplete------------------------------
 
-### Timeline
+## Timeline
 
 <table>
     <thead>
@@ -188,7 +221,9 @@ For the organisation to start the process of creating a schedule, they will be r
     </tbody>
 </table>
 
+## Tech Stack
 
+## Project Log
 
 
 
