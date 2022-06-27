@@ -236,7 +236,8 @@ For the organisation to start the process of creating a schedule, they will be r
 </table>
 
 ## Tech Stack
-<img src=https://user-images.githubusercontent.com/88086170/175861811-b87e9c70-90c6-4aab-b833-8c91b853e1c3.png width="500" height="700">
+![tech_stack](https://user-images.githubusercontent.com/88086170/175878216-cbdbd51e-5a99-4994-afef-63616798d409.png)
+
 
 ## Software Engineering Practices
 <ul>
