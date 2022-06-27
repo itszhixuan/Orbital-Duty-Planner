@@ -33,7 +33,7 @@ Members: Lee Zhi Xuan, Johnathan Wee
 Proposed Level of Achievement: Apollo 11
 
 ## Proof of Concept
-Our Website can be accessed through the following link: 
+Our Website can be accessed through the following link: https://plan-it-daf58--milestone2-22ohnxql.web.app/
 
 We have some dummy events that you may use to reduce the hassle of joining events created by other Planners.
 <ul> 	
