@@ -1,4 +1,4 @@
-import { ref, get, val} from "firebase/database";
+import { ref, get, val, set} from "firebase/database";
 import { useState } from "react";
 import {database, auth} from "../Firebase_config";
 
@@ -17,6 +17,7 @@ function InputCode(props) {
             get(ref(database, "users/" + eventPlanner.val() + "/" + eventCode))
             .then((snapshot) => {
                 const value = snapshot.val();
+                set(ref(database, "users/" + auth.currentUser.uid + "/" + eventCode), value);
                 
                 const newEvents = [
                     ...events,
