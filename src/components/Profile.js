@@ -135,11 +135,11 @@ function Profile(props) {
                     <button onClick={() => setActive("InputCode")} className = "learnmore-button">Input code</button>
                     <button onClick = {logout} className="learnmore-button">Log out</button>
 
-                    <h2> Planned Events: </h2>
+                    <h2> Events Created: </h2>
                     <ul className="current-events-list">
                         {plannedEventList}
                     </ul>
-                    <h2> Joined Events</h2>
+                    <h2> Events Joined</h2>
                     <ul className="current-events-list">
                         {joinedEventList}
                     </ul>

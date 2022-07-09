@@ -316,7 +316,7 @@ nav-img{
 
 .event-page{
   font-size: 16px;
-  margin-top: 80px;
+  margin-top: 100px;
 }
 
 .event-page h2{
@@ -329,7 +329,7 @@ nav-img{
   margin: 0;
   padding: 0;
   margin-bottom: 30px;
-  max-height: 200px;
+  max-height: 100px;
   overflow: auto;
 }
 
@@ -595,19 +595,20 @@ code {
 .react-calendar__tile:disabled {
   /* background-color: #f0f0f0; */
   background-color: rgb(130, 116, 130);
-  color: rgb(169, 148, 169);
+  /* color: rgb(169, 148, 169); */
+  color: rgb(141, 129, 141);
 }
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background-color: rgb(122, 95, 122);
 }
-.react-calendar__tile--now {
+/* .react-calendar__tile--now {
   background: rgb(122, 59, 122);
 }
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
   background: #ffffa9;
-}
+} */
 .react-calendar__tile--hasActive {
   background: rgb(93, 76, 93);
 }

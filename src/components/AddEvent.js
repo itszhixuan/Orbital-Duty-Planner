@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { database, auth} from '../Firebase_config';
 import { push, set, ref, update } from "firebase/database";
 
@@ -80,6 +80,27 @@ function AddEvent(props) {
         e.preventDefault();
         addEmail();
     }
+
+    useEffect(() => {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd
+        }
+        if (mm < 10) {
+        mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("dateRestriction1").setAttribute("min", today);
+    }, []);
+
+    useEffect(() => {
+        document.getElementById("dateRestriction2").setAttribute("min", startDate);
+    }, [startDate]);
+
     
     return (
         <>
@@ -96,11 +117,13 @@ function AddEvent(props) {
                     </div>
                     <div>
                         <p className="event-left">Start Date: </p> 
-                        <input type = 'date' onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' id ="dateRestriction1" min ="2022-01-01" max = "2050-01-01"
+                        onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">End Date: </p> 
-                        <input type = 'date' onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' id ="dateRestriction2" min ="2022-01-01" max = "2050-01-01" 
+                        onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
                     </div>
 {/*                     <div>
                         <p className="event-left">Total Hours per Slot: </p> 
@@ -131,9 +154,6 @@ function AddEvent(props) {
                     {/* <div>
                             {emailList}
                         </div> */}
-
-                        
-                    
                     {/*
                     <div>
                         <p className= "event-left"> Email of members</p> 
