@@ -7,11 +7,34 @@ function DisplayCode(props) {
     console.log(currentEvent.planner);
     console.log(currentEvent.planner === auth.currentUser.uid);
 
+    let isCopied = false;
+    const copyText = async () => {
+        try {
+            await navigator.clipboard
+            .writeText(currentEvent.eventKey)
+            .then(() => {
+                alert ("Successfully copied")
+            })
+            .catch(() => {
+                alert ("Failed to copy to Clipboard")
+            })
+            isCopied = true;
+            setTimeout(() => {
+                isCopied = false;
+            }, 1500)
+        } catch (error) {
+            console.error('error', error)
+        }
+    }
     return (
         <>
             <div className="display_code">
                 <h1> Code for {currentEvent.eventName}:</h1>
-                <h2> {currentEvent.eventKey}</h2>
+                <h2 className="code-left"> {currentEvent.eventKey}</h2>
+                <button onClick={copyText} className = 'learnmore-button'>
+                    { isCopied ? 'Copied!' : 'Copy Code' }
+                </button>
+
                 <p> Share the code with your Members/Participants!</p>
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
             </div>               

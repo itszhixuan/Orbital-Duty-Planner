@@ -139,7 +139,7 @@ function Profile(props) {
                     <ul className="current-events-list">
                         {plannedEventList}
                     </ul>
-                    <h2> Events Joined</h2>
+                    <h2> Events Joined:</h2>
                     <ul className="current-events-list">
                         {joinedEventList}
                     </ul>
