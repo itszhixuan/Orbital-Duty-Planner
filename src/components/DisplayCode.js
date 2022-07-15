@@ -1,7 +1,8 @@
 import { auth } from "../Firebase_config";
-
+import { useState } from "react";
 
 function DisplayCode(props) {
+    const [copyStatus, setCopyStatus] = useState(null);
     const setActive = props.setActive;
     const currentEvent = props.currentEvent;
     console.log(currentEvent.planner);
@@ -13,10 +14,12 @@ function DisplayCode(props) {
             await navigator.clipboard
             .writeText(currentEvent.eventKey)
             .then(() => {
-                alert ("Successfully copied")
+                /* alert ("Successfully copied") */
+                setCopyStatus("Successfully copied!");
             })
             .catch(() => {
-                alert ("Failed to copy to Clipboard")
+                /* alert ("Failed to copy to Clipboard") */
+                setCopyStatus("Failed to copy to Clipboard");
             })
             isCopied = true;
             setTimeout(() => {
@@ -34,7 +37,9 @@ function DisplayCode(props) {
                 <button onClick={copyText} className = 'learnmore-button'>
                     { isCopied ? 'Copied!' : 'Copy Code' }
                 </button>
-
+                <div className="display_code_red">
+                    { copyStatus && <p>{ copyStatus }</p> }
+                </div>
                 <p> Share the code with your Members/Participants!</p>
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>
             </div>               

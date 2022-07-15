@@ -469,6 +469,19 @@ th, td {
   width: 90%;
 }
 
+.code-left{
+  width: 40%;
+  direction: ltr;
+  text-align: left;
+  font-size: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
+}
+
+.red{
+  color: red;
+}
+
 /* ~~~~Initial Code~~~~ */
 body {
   margin: 0;
@@ -495,17 +508,13 @@ code {
   font-weight: 600;
   font-size: 25px;
   padding-top: 40px;
-  padding-bottom: 40px;
 }
 
-.code-left{
-  width: 40%;
-  direction: ltr;
-  text-align: left;
-  font-size: 20px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  display: inline-block;
+.display_code_red p{
+  color: rgb(255, 71, 71);
 }
+
+
 
 /* ~~~~CSS styling for react-calandar~~~~ */
 
