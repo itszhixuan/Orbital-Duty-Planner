@@ -27,6 +27,19 @@ function Time_slots(props) {
     setNewTaskText(shift);
     setCurrDate(props.date.toDateString());
   }
+  
+  let isRepeated = false;
+
+  function checkRepeated(newTaskText, currDate){
+    tasks.forEach(function(elem){
+      console.log(elem.description);
+      console.log(elem.date);
+      if (elem.description === newTaskText && elem.date === currDate){
+        console.log("Repeated element");
+        isRepeated = true;
+      }
+    });
+  }
   function handleAddTask(event) {
     /* setCurrDate(props.date.toDateString()); */
     event.preventDefault();
@@ -34,7 +47,17 @@ function Time_slots(props) {
     
     console.log(newTaskText);
     console.log(currDate);
-    addTask(newTaskText, currDate);
+    console.log(tasks);
+    checkRepeated(newTaskText, currDate);
+    console.log(isRepeated);
+    if (isRepeated === false) {
+      addTask(newTaskText, currDate);
+      isRepeated = true; 
+    } else {
+      alert("You have selected a repeated value!")
+    }
+
+    /* addTask(newTaskText, currDate); */
   }
   function addTask(description,date) {
     const newTasks = [
