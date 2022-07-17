@@ -58,7 +58,7 @@ function InputCode(props) {
     return(
         <>
             <form onSubmit = {handleSubmit} className="display_code">
-            <h2>Have a code? Input it here!</h2>
+            <h1>Have a code? Input it here!</h1>
             {/* <h2 className = "event-left">Input your code!</h2> */}
             <input  onChange = {(e) => setEventCode(e.target.value)} className="event-right"/>
             <input type = "submit" value = "Apply" className="learnmore-button"/>

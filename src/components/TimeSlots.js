@@ -15,6 +15,7 @@ function Time_slots(props) {
   const [tasks, setTasks] = useState([]);
   const [newTaskText, setNewTaskText] = useState("");
   const [currDate, setCurrDate] = useState(""); 
+  const [repeatedValue, setRepeatedValue] = useState(null);
   const currentEvent = props.currentEvent;
   const setActive = props.setActive; 
 
@@ -54,7 +55,8 @@ function Time_slots(props) {
       addTask(newTaskText, currDate);
       isRepeated = true; 
     } else {
-      alert("You have selected a repeated value!")
+      /* alert("You have selected a repeated value!") */
+      setRepeatedValue("You have selected a repeated value!")
     }
 
     /* addTask(newTaskText, currDate); */
@@ -132,6 +134,9 @@ return (
           ))}
         </tbody>
         </table>
+      </div>
+      <div className="display_code_red">
+          { repeatedValue && <p>{ repeatedValue }</p> }
       </div>
       <form onSubmit={handleSubmit}>
         <button 

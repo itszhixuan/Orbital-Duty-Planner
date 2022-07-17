@@ -322,6 +322,7 @@ nav-img{
 .event-page h2{
   padding-top: 20px;
   padding-bottom: 30px;
+  font-size: 22px;
 }
 
 .current-events-list{
@@ -470,9 +471,9 @@ th, td {
 }
 
 .code-left{
-  width: 40%;
+  width: 25%;
   direction: ltr;
-  text-align: left;
+  text-align: center;
   font-size: 20px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   display: inline-block;
@@ -500,18 +501,19 @@ code {
 .display_code h1{
   text-align: center;
   font-weight: 600;
-  padding-bottom: 20px;
+  font-size: 22px;
+  padding-bottom: 10px;
 }
 
 .display_code h2{
   text-align: center;
-  font-weight: 600;
-  font-size: 25px;
-  padding-top: 40px;
+  font-size: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .display_code_red p{
-  color: rgb(255, 71, 71);
+  color: rgb(255, 72, 72);
 }
 
 
