@@ -63,6 +63,8 @@ function AddEvent(props) {
 
         eventComponent.eventKey = newKey;
         set(eventRef, eventComponent);
+        set(ref(database, "events/" + newKey + "/planner"), auth.currentUser.uid);
+        console.log("current user = " + auth.currentUser.email);
         return newKey;
     }
 
