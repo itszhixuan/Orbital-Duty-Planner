@@ -1,15 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../index.css';
 import { Link } from 'react-router-dom';
 
 function About() {
+
+    const [sidebar, setSidebar] = useState(false);
+
+    const showSidebar = () => setSidebar(!sidebar);
 
     return (
         <div>
             <div className="sub-header">
                 <nav>
                     <img src="test1.png"/>
-                    <div className="nav-links">
+                    <div className={sidebar ? 'nav-links-about active' : 'nav-links-about'}>
+                        <i class="fa fa-close" onClick={showSidebar}></i>
                         <ul>
                                 <Link to='/homepage'>
                                     <li><a href="">HOME</a></li>
@@ -22,6 +27,7 @@ function About() {
                                 </Link>
                         </ul>
                     </div>
+                    <i class="fa fa-list" onClick={showSidebar}></i>
                 </nav>
                 <h1>About Us</h1>
             </div>

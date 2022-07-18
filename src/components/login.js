@@ -11,12 +11,17 @@ function Login() {
     function handleLoggedIn() {
       setLoggedIn(!loggedIn);
     }
+
+    const [sidebar, setSidebar] = useState(false);
+
+    const showSidebar = () => setSidebar(!sidebar);
     
     return (
         <div className='larger_header'>
         <nav>
           <img src="test1.png"/>
-          <div className="nav-links">
+          <div className={sidebar ? 'nav-links-about active' : 'nav-links-about'}>
+            <i class="fa fa-close" onClick={showSidebar}></i>
             <ul>
                     <Link to='/homepage'>
                 <li><a href="">HOME</a></li>
@@ -29,6 +34,7 @@ function Login() {
                     </Link>
             </ul>
           </div>
+          <i class="fa fa-list" onClick={showSidebar}></i>
         </nav>
         <div className="text-box">
             {

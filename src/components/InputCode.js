@@ -32,7 +32,7 @@ function InputCode(props) {
                         console.log(eventPlanner.val());
                         setEvents(newEvents);
                     } else {
-                        alert ("Code is invalid")
+                        alert ("Code entered is invalid")
                         /* setInvalidCode("The code is invalid.") */
                     }
                 })
