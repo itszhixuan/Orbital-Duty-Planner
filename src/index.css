@@ -219,6 +219,7 @@ nav .fa{
   .text-box h1{
     font-size: 20px;
   }
+
   nav .fa{
     display: block;
     margin: 10px;
@@ -268,8 +269,27 @@ nav .fa{
   .nav-links-about ul{
     padding: 30px;
   }
-
-
+  .row{
+    flex-direction: column;
+  }/* 
+  .about-features{
+      height: 1000vh;
+      width: 90%;
+      margin: auto;
+      padding-bottom: 20px;
+      text-align: center;
+  }
+  .about-content{
+        height: 100vh;
+        width: 90%;
+        margin: auto;
+        padding-top: 80px;
+        text-align: center;
+  }
+  .about-content h1{
+    font-size: 1px;
+    padding-bottom: 10px;
+  } */
 }
 
 .footer{
@@ -312,14 +332,23 @@ nav .fa{
 .about-content{
 /*   background-color: aliceblue; */
 /*   background-color: rgb(254, 236, 254); */
-  height: 60vh;
+  min-height: 60vh;
   width: 90%;
   margin: auto;
   padding-top: 80px;
-  padding-bottom: 100px;
+  text-align: center;
 }
 
-.about-col-1{
+.alignment{
+  padding-top: 20px;
+}
+
+.about-content h1{
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+/* .about-col-1{
   width: 36%;
   padding-left: 0px;
   padding-top: 120px;
@@ -341,21 +370,31 @@ nav .fa{
   font-size: 16px;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   border-left: 2px solid black;
+} */
+
+.about-col-final{
+  /* width: 80%; */
+  flex-basis: 80%;
+  border-radius: 10px;
+  padding: 20px 13px;
+  background: #e3b6ee;
+  box-sizing: border-box;
 }
 
-.about-col-2 p{
-  font-size: 18px;
+.about-col-final p{
   padding-bottom: 20px;
+  text-align: center;
 }
+
 
 .about-features{
   /*   background-color: aliceblue; */
   /*   background-color: rgb(254, 236, 254); */
-    height: 60vh;
+    min-height: 50vh;
     width: 90%;
     margin: auto;
-    padding-top: 80px;
-    padding-bottom: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
   }
 
@@ -374,14 +413,13 @@ nav .fa{
 }
 
 .abtfeatures{
-  text-align: center;
   flex-basis: 31%;
   /* background: rgb(210, 128, 210); */
 /*   background: rgb(194,153,194); */
   background: #e3b6ee;
   border-radius: 10px;
   margin-bottom: 5%;
-  padding: 40px 13px;
+  padding: 20px 13px;
   box-sizing: border-box;
   transition: 0.5s;
 }
