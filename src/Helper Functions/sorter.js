@@ -1,14 +1,89 @@
 import {auth, database} from "../Firebase_config";
-import { push, set, ref, update, onValue } from "firebase/database";
+import { push, set, ref, update, onValue, get} from "firebase/database";
+import { shuffleArray} from "shuffle";
 
 
 function plan(event) {
-    //find number of days
-    const numberOfDays = Math.ceil((event.endDate.getTime() - event.startDate.getTime()) / (1000 * 3600 * 24));
-    const shiftsPerMember =  Math.ceil(numberOfDays * 2 / event.numberOfMembers);
-    const usersRef = ref(database, "events/" + event.eventKey + "/users");
-    let remainingEventShift = numberOfDays * 2;
-    onValue(usersRef, (users) => {
+    //logging information
+    const currentEventRef = ref(database, "events/" + event.eventKey);
+    const numberOfDays = Math.ceil((new Date(event.endDate).getTime() - new Date(event.startDate).getTime()) / (1000 * 3600 * 24));
+
+    console.log("Current event: " + event.eventKey);
+    console.log("Planning event: ");
+    console.log("");
+    console.log("From :" + event.startDate);
+    console.log("Number of days :" + numberOfDays);
+    
+    
+    //random assignment
+    
+    get(currentEventRef)
+    .then(currentEvent => {
+        let remainingEventShift = numberOfDays * 2;
+
+        //shuffle shifts
+        let dayArray;
+        for(let i = 0; i < numberOfDays * 2; i ++) {
+            dayArray[i] = i;
+        }
+        shuffleArray(dayArray);
+        console.log("Day Array = "  + dayArray);
+
+
+        
+
+        //Shifts per member = the number of shifts needed to fill all days rounded up
+        let numOfMembers = currentEvent.child("users").size;
+        console.log("Number of members: " + numOfMembers);
+        let shiftsPerMember =  Math.ceil(numberOfDays * 2 / numOfMembers);
+        console.log("Number of shifts per member : " + shiftsPerMember );
+
+        
+        //variable to keep track of number of overall allocated shifts
+        let currentShift = 0;
+
+        //Loops through each user
+        currentEvent.child("users").forEach((user) => {
+
+            //Establish a Set of unavailable shifts
+            let currentNumShifts = shiftsPerMember; 
+            let unavailableDateSet = new Set();
+            user.child("inputs/unavailableDates").forEach((t) => {
+                const timeslot = t.val();
+                const date = timeslot.date;
+                const description = timeslot.description;
+                unavailableDateSet.add( date + " " + description);
+            });
+
+            //allocate shifts
+            if (currentShift < numberOfDays * 2) {
+                while (currentNumShifts > 0){
+                    let date, isDay;
+                    let pickedShift = dayArray.pop();
+                    if (pickedShift % 2 === 0) {
+                        isDay= true;
+                    } else {
+                        isDay = false;
+                    }
+                    date = new Date().setDate(event.startDate + pickedShift / 2);
+                    
+
+
+                    currentNumShifts --;
+                    currentShift ++;
+                }
+            }
+            
+            
+        })
+
+        //After looping through each user
+
+    });
+
+
+    return 
+    /*onValue(currentEventRef, (users) => {
         let remainingUserShift = shiftsPerMember;
         users.forEach((user) => {
             const blockedOutDates = user.child("inputs/unavailableDates").val();
@@ -16,7 +91,7 @@ function plan(event) {
             /*user.child("inputs/unavailableDates").forEach((blockedDate) => {
                 const array = blockedDate.val().description.split("-");
                 blockedOutDates.push(array);
-            });*/
+            });
         while(remainingUserShift > 0) {
             if (remainingEventShift > 0) {
                 const randomDay = Math.random() * numberOfDays;
@@ -48,8 +123,8 @@ function plan(event) {
         }
 
         })
-    });
-    /*
+    }); 
+    
     const usersList = ref(database, "events").forEach;
     const hours = event.hours;
     const totalUsers = usersList.length;
@@ -63,6 +138,6 @@ function plan(event) {
 
     });
 */
-    return 
+    
 }
 export default plan;

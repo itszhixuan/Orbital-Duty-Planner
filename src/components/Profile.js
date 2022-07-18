@@ -4,7 +4,7 @@ import {auth} from "../Firebase_config"
 import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
-import { get, onChildAdded, onChildRemoved, ref, remove, set, update } from "firebase/database";
+import { get, onChildAdded, onChildRemoved, ref, remove, set, update, push} from "firebase/database";
 import Calendar from "react-calendar";
 import plan from "../Helper Functions/sorter";
 import DisplayCode from "./DisplayCode";
@@ -23,6 +23,7 @@ function Profile(props) {
     const user = props.user;
 
     //checks if events are initialised
+    
     if (init) {
         setInit(false);
         const eventRef = ref(database, 'users/' + auth.currentUser.uid);
@@ -46,19 +47,9 @@ function Profile(props) {
                 console.error(error);
         });
     }
-    onChildAdded(ref(database, "users/" + auth.currentUser.uid), (event) =>{
-        set(ref(database, "events/" + event.key ), {
-            emails : event.val().emails
-        });
-        set(ref(database, "events/" + event.key ), {
-            planner : auth.currentUser.uid
-        });
-    })
-    onChildRemoved(ref(database, "users/" + auth.currentUser.uid), (event) => {
-        
-    })
-
     
+    //check current event list
+    console.log(events);
 
      const logout = async () => {
         try {
@@ -71,6 +62,7 @@ function Profile(props) {
 
     function handlePlan(event){
         plan(event);
+        setActive("Overall calendar");
     }
 
     function showCode (event) {
@@ -89,7 +81,7 @@ function Profile(props) {
         setActive("Member");
     }
 
-    function deleteEvent(event) {
+    function deleteEvent(event, planned) {
         const eventIndex = events.indexOf(event);
         const eventKey = event.eventKey;
         events.splice(eventIndex, 1);
@@ -106,23 +98,54 @@ function Profile(props) {
             console.log("Error detected while removing event :" + error);
         });     
        
-        
+        if(planned) {
+            //remove from other users event lists
+           get(ref(database, "events/" + eventKey + "/users"))
+           .then((members) => {
+            members.forEach((member) => {
+            console.log("Member :" + member.key);
+                remove(ref(database, "users/" + member.key + "/" + eventKey));
+            });
+           });
+           //remove event from main events
+            remove(ref(database, "events/" + eventKey))
+            .then(function(event) {
+                console.log("Removed from event node :" + eventKey);
+            })
+            .catch(function(error) {
+                console.log("Error while removing event from events :" + error);
+            })
+        } else {
+            //remove user from event in main event list
+            remove(ref(database, "events/" + eventKey + "/users/" + auth.currentUser.uid));
+        }
         setEvents(newEvents);
     }
-    function mapEventsToList(e) {
+    function mapEventsToListPlanned(e) {
+        return <li>
+        <label className="current-events-left">{e.eventName}  </label>
+        <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
+
+        
+        <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
+        <button onClick={() => deleteEvent(e, true)} className="current-events-button"> Remove</button>
+    </li>
+    }
+    function mapEventsToListJoined(e) {
         return <li>
         <label className="current-events-left">{e.eventName}  </label>         
+
+
         <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
         <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
-        <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
-        <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
+        <button onClick={() => deleteEvent(e, false)} className="current-events-button"> Remove</button>
     </li>
     }
     
     const plannedEvents = events.filter((event) => event.planner === auth.currentUser.uid);
     const joinedEvents = events.filter((event) => event.planner !== auth.currentUser.uid);
-    const plannedEventList = plannedEvents.map(mapEventsToList);
-    const joinedEventList = joinedEvents.map(mapEventsToList);
+    const plannedEventList = plannedEvents.map(mapEventsToListPlanned);
+    const joinedEventList = joinedEvents.map(mapEventsToListJoined);
 
     return (
         <>
