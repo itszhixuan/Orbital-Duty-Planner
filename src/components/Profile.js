@@ -18,6 +18,7 @@ function Profile(props) {
     const [init, setInit] = useState(true);
     const [weekdayPoints, setCurrentWeekdayPoints] = useState(1);
     const [weekendPoints, setCurrentWeekendPoints] = useState(2);
+    const [tabOpen, setTabOpen] = useState(false);
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -111,11 +112,25 @@ function Profile(props) {
     }
     function mapEventsToList(e) {
         return <li>
-        <label className="current-events-left">{e.eventName}  </label>         
-        <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
-        <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
-        <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
-        <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
+        <label className="current-events-left">{e.eventName}  </label>
+        <label className="dropdown">
+            <i class="fa fa-bars" onClick={() => setTabOpen(!tabOpen)}></i>
+        </label>
+        <div className={tabOpen ? 'test' : 'test-hidden'}>
+            <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
+            <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
+            <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
+            <button onClick={() => deleteEvent(e)} className="current-events-button"> Remove</button>
+        </div>         
+
+
+        
+{/*         {tabOpen && <div>
+            <button onClick ={() => handleMember(e)} > Choose shifts</button>
+            <button onClick = {() => showCode(e)} > View Code</button>
+            <button onClick = {() => handlePlan(e)} > Plan</button>
+            <button onClick={() => deleteEvent(e)}> Remove</button>
+        </div>} */}
     </li>
     }
     

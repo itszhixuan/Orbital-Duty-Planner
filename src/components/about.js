@@ -33,7 +33,7 @@ function About() {
             </div>
             <div className="outer">
                 <div className='about-content'>
-                    <h1>Our goal</h1>
+                    <h1>Our Goal</h1>
                     <div className='alignment'>
                         <div className='about-col-final'>
                             <p>

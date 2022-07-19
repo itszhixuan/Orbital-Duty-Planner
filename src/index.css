@@ -16,11 +16,20 @@
 .larger_header{
   min-height: 180vh;
   width: 100%;
+  margin: auto;
   background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../images/colour.jpg);
   background-position: center;
   background-size: cover;
   position: relative;
 }
+
+/* .about-content{
+    min-height: 60vh;
+    width: 90%;
+    margin: auto;
+    padding-top: 80px;
+    text-align: center;
+  } */
 
 .sub-header{
   height: 60vh;
@@ -215,6 +224,10 @@ nav .fa{
   display: none;
 }
 
+.dropdown{
+  display:none;
+}
+
 @media(max-width: 700px){
   .text-box h1{
     font-size: 20px;
@@ -271,25 +284,34 @@ nav .fa{
   }
   .row{
     flex-direction: column;
-  }/* 
-  .about-features{
-      height: 1000vh;
-      width: 90%;
-      margin: auto;
-      padding-bottom: 20px;
-      text-align: center;
   }
-  .about-content{
-        height: 100vh;
-        width: 90%;
-        margin: auto;
-        padding-top: 80px;
-        text-align: center;
+
+  .dropdown{
+    display: block;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+    padding-left: 10px;
   }
-  .about-content h1{
-    font-size: 1px;
-    padding-bottom: 10px;
-  } */
+
+  .current-events-button{
+    display: none;
+  }
+
+  .test button{
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+  }
+
+  .test-hidden{
+    height: 0px;
+    overflow: hidden;
+  }
+
+
 }
 
 .footer{
@@ -498,6 +520,7 @@ nav .fa{
   padding-bottom: 10px;
   padding-left: 30px;
   margin: 1px;
+  margin-bottom: 10px;
   font-size: 12px;
   background: transparent;
   position: relative;
@@ -515,6 +538,15 @@ nav .fa{
   direction: ltr;
   text-align: left;
   font-size: 16px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
+}
+
+.test-hidden{
+  /* width: 45%;
+  direction: rtl;
+  text-align: right;
+  font-size: 16px; */
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   display: inline-block;
 }
