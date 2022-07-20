@@ -296,21 +296,77 @@ nav .fa{
     padding-left: 10px;
   }
 
-  .current-events-button{
-    display: none;
+  .shrink label{
+    font-size: 14px;
   }
 
   .test button{
-    display: block;
+    /* display: block; */
     margin-left: auto; 
     margin-right: auto;
+    font-size: 12px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
   }
-
   .test-hidden{
     height: 0px;
     overflow: hidden;
   }
-
+  .event-page h2{
+    font-size: 15px !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important; 
+    margin-top: 5px;
+  }
+  .event-page .learnmore-button{
+    padding-top: 7px;
+    padding-right: 20px;
+    padding-bottom: 7px;
+    padding-left: 20px;
+    font-size: 12px;
+  }
+  .current-events-list{
+    margin-bottom: 5px !important ;
+    max-height: 100px;
+    overflow: auto;
+  }
+  .display_code h1{
+    font-size: 18px !important;
+    padding-bottom: 10px;
+  }
+  .display_code h2{
+    text-align: center;
+    font-size: 10px !important;
+    padding-right: 40px;
+  }
+  .display_code p{
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .display_code .learnmore-button{
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    font-size: 10px;
+  }
+  .display_code_red p{
+    font-size: 10px !important;
+  }
+  .event-right{
+    padding-top: 5px !important;
+    padding-right: 15px !important;
+    padding-bottom: 5px !important;
+    padding-left: 15px !important;
+    font-size: 10px !important;
+  }
+  .event-left{
+    font-size: 12px !important;
+  }
 
 }
 

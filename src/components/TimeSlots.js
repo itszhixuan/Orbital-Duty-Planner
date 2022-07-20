@@ -119,9 +119,11 @@ return (
         <p>Current list of blocked out dates:</p>
         <table className='center'>
           <thead>
-            <th>No.</th>
-            <th>Shift</th>
-            <th>Date</th>
+            <tr>
+              <th>No.</th>
+              <th>Shift</th>
+              <th>Date</th>
+            </tr>
           </thead>
 
         <tbody>
