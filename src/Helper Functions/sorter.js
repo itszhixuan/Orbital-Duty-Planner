@@ -21,7 +21,7 @@ function plan(event) {
     .then(currentEvent => {
         let remainingEventShift = numberOfDays * 2;
 
-        //shuffle shifts
+        //code to randomise shifts
         let dayArray;
         for(let i = 0; i < numberOfDays * 2; i ++) {
             dayArray[i] = i;
@@ -29,15 +29,14 @@ function plan(event) {
         shuffleArray(dayArray);
         console.log("Day Array = "  + dayArray);
 
-
-        
-
         //Shifts per member = the number of shifts needed to fill all days rounded up
         let numOfMembers = currentEvent.child("users").size;
         console.log("Number of members: " + numOfMembers);
         let shiftsPerMember =  Math.ceil(numberOfDays * 2 / numOfMembers);
         console.log("Number of shifts per member : " + shiftsPerMember );
 
+        //Array to keep track of confirmed dates
+        let confirmedDateArray = Array(numberOfDays * 2);
         
         //variable to keep track of number of overall allocated shifts
         let currentShift = 0;
@@ -58,31 +57,51 @@ function plan(event) {
             //allocate shifts
             if (currentShift < numberOfDays * 2) {
                 while (currentNumShifts > 0){
-                    let date, isDay;
-                    let pickedShift = dayArray.pop();
-                    if (pickedShift % 2 === 0) {
-                        isDay= true;
-                    } else {
-                        isDay = false;
-                    }
-                    date = new Date().setDate(event.startDate + pickedShift / 2);
+                    let shift, pickedDate, blockedArray;
+                    let pickedShift = dayArray.pop()
+                    let isBlocked = true;
                     
-
-
+                    while(isBlocked) {
+                        pickedDate = new Date().setDate(event.startDate + pickedShift / 2).toDateString();
+                        if (pickedShift % 2 === 0) {
+                            shift= "Day Shift";
+                        } else {
+                            shift = "Night Shift";
+                        }
+                        if (! unavailableDateSet.has(pickedDate + shift)){ //if picked date does not clash
+                            confirmedDateArray[pickedShift] = user.key;
+                            dayArray.concat(blockedArray);
+                            isBlocked = false;
+                        } else { //if picked date clashes
+                            blockedArray.push(pickedShift);
+                            pickedShift.pop();
+                        }
+                    }
+                
                     currentNumShifts --;
                     currentShift ++;
                 }
             }
-            
+            console.log(dayArray);
+            for (let i = 0; i < dayArray.length; i += 2) {
+                const daysFromStart = i / 2;
+                const currentDate = new Date().setDate(event.startDate + daysFromStart).toDateString();
+
+                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate + "Day Shift")
+                , dayArray[i]);
+                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate + "Night Shift")
+                , dayArray[i + 1]);
+            }
             
         })
 
-        //After looping through each user
+
+        //After looping through each user, apply confirmed dates to calendar
 
     });
 
 
-    return 
+    
     /*onValue(currentEventRef, (users) => {
         let remainingUserShift = shiftsPerMember;
         users.forEach((user) => {
