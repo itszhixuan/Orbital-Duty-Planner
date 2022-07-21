@@ -60,7 +60,7 @@ function Profile(props) {
         }
     }
 
-    function handlePlan(event){
+    function handlePlan(event){        
         plan(event);
     }
 
@@ -73,10 +73,6 @@ function Profile(props) {
         setCurrentEvent(member);
         console.log("Profile member key:" + member.eventKey);
         console.log("Start Date:" + member.eventName);
-        /*
-        setCurrentWeekendPoints(member.weekendPoints);
-        setCurrentWeekdayPoints(member.weekdayPoints);
-        */
         setActive("Member");
     }
 

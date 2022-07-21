@@ -51,13 +51,16 @@ function plan(event) {
                 const timeslot = t.val();
                 const date = timeslot.date;
                 const description = timeslot.description;
-                unavailableDateSet.add( date + " " + description);
+                unavailableDateSet.add (date + " " + description);
+                console.log("Unavailable date added : (" + date + " " + description + ")");
             });
+            //console.log("Set of unavailable dates for " + user.key + ": " + Array.from(unavailableDateSet));
 
             //allocate shifts
             if (currentOverallShift < numberOfDays * 2) {
                 while (currentNumShifts > 0){
-                    let shift, pickedDate, blockedArray;
+                    let shift, pickedDate
+                    let blockedArray = [];
                     let pickedShift = dayArray.pop()
                     let isBlocked = true;
                     
@@ -71,15 +74,19 @@ function plan(event) {
                         } else {
                             shift = "Night Shift";
                         }
-                        if (! unavailableDateSet.has(pickedDate + shift)){ //if picked date does not clash
+                        if (! unavailableDateSet.has(pickedDate + " " + shift)){ //if picked date does not clash
                             console.log("Success! " + user.key + " gets " + pickedDate); 
                             console.log("number of remaining shifts to be filled: " + currentOverallShift); 
                             confirmedDateArray[pickedShift] = user.key;
-                            dayArray.concat(blockedArray);
+                           // set(ref(database, "users/" + user.key + "/" + event.eventKey + "/confirmedDates/"))
+                            dayArray = dayArray.concat(blockedArray);
+                            blockedArray = [];
                             isBlocked = false;
                         } else { //if picked date clashes
                             blockedArray.push(pickedShift);
-                            pickedShift.pop();
+                            pickedShift = dayArray.pop();
+                            console.log("Found unavailable date: " + pickedDate);
+                            console.log("Finding new date...")
                         }
                     }
                 
@@ -98,7 +105,6 @@ function plan(event) {
                 const daysFromStart = i / 2;
                 const currentDate = new Date();
                 currentDate.setDate(new Date(event.startDate).getDate() + daysFromStart);
-                console.log(currentDate);
 
                 
                 set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate.toDateString() + " Day Shift")
