@@ -9,6 +9,7 @@ import Calendar from "react-calendar";
 import plan from "../Helper Functions/sorter";
 import DisplayCode from "./DisplayCode";
 import InputCode from "./InputCode";
+import { Alert, Snackbar } from '@mui/material';
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -22,6 +23,9 @@ function Profile(props) {
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
+
+    const [submitted, setSubmitted] = useState(false);
+    console.log(submitted);
 
     //checks if events are initialised
     if (init) {
@@ -130,6 +134,10 @@ function Profile(props) {
         console.log(tabOpen);
     } */
     
+    function hideMessage(){
+        setSubmitted(false);
+        console.log(submitted);
+    }
     const plannedEvents = events.filter((event) => event.planner === auth.currentUser.uid);
     const joinedEvents = events.filter((event) => event.planner !== auth.currentUser.uid);
     const plannedEventList = plannedEvents.map(mapEventsToList);
@@ -141,6 +149,13 @@ function Profile(props) {
                 active === "Profile" 
                 ? <> 
                 <div className='event-page'>
+                    {submitted && 
+                        <Snackbar open={submitted} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {hideMessage()}}>
+                            <Alert severity="success" onClose={() => {hideMessage()}}>
+                                Event successfully created!
+                            </Alert>
+                        </Snackbar>
+                    }
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
                     <button onClick={() => setActive("InputCode")} className = "learnmore-button">Input code</button>
@@ -172,6 +187,7 @@ function Profile(props) {
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
+                    setSubmitted = {setSubmitted}
                 />
 
                 :active === "DisplayCode"

@@ -16,10 +16,11 @@ function AddEvent(props) {
     const [emails, setEmails] = useState([""]);
     const [em, setEm] = useState("");
     
-    
     const setActive = props.setActive; 
     const events = props.events;
     const setEvents = props.setEvents;
+    const setSubmitted = props.setSubmitted;
+
     const emailList = emails.map((e) => 
         <li>
             {e}
@@ -43,6 +44,9 @@ function AddEvent(props) {
         event.preventDefault();
         const newKey = addEventToDatabase(auth.currentUser.uid);
         addEvent(newKey);
+        setSubmitted(true);
+/*         console.log(submitted); */
+        /* alert("Form submitted successfully!") */
     }
 
     function addEvent(newKey) {
