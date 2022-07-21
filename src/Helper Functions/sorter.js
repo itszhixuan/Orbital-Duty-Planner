@@ -1,6 +1,6 @@
 import {auth, database} from "../Firebase_config";
 import { push, set, ref, update, onValue, get} from "firebase/database";
-import { shuffleArray} from "shuffle";
+import { shuffleArray} from "./shuffle";
 
 
 function plan(event) {
@@ -11,7 +11,8 @@ function plan(event) {
     console.log("Current event: " + event.eventKey);
     console.log("Planning event: ");
     console.log("");
-    console.log("From :" + event.startDate);
+    console.log("From: " + event.startDate);
+    console.log("To: " + event.endDate);
     console.log("Number of days :" + numberOfDays);
     
     
@@ -19,10 +20,9 @@ function plan(event) {
     
     get(currentEventRef)
     .then(currentEvent => {
-        let remainingEventShift = numberOfDays * 2;
 
         //code to randomise shifts
-        let dayArray;
+        let dayArray = Array(numberOfDays * 2);
         for(let i = 0; i < numberOfDays * 2; i ++) {
             dayArray[i] = i;
         }
@@ -39,7 +39,7 @@ function plan(event) {
         let confirmedDateArray = Array(numberOfDays * 2);
         
         //variable to keep track of number of overall allocated shifts
-        let currentShift = 0;
+        let currentOverallShift = 0;
 
         //Loops through each user
         currentEvent.child("users").forEach((user) => {
@@ -55,20 +55,25 @@ function plan(event) {
             });
 
             //allocate shifts
-            if (currentShift < numberOfDays * 2) {
+            if (currentOverallShift < numberOfDays * 2) {
                 while (currentNumShifts > 0){
                     let shift, pickedDate, blockedArray;
                     let pickedShift = dayArray.pop()
                     let isBlocked = true;
                     
                     while(isBlocked) {
-                        pickedDate = new Date().setDate(event.startDate + pickedShift / 2).toDateString();
+                        const date= new Date();
+                        date.setDate(new Date(event.startDate).getDate() + pickedShift);//.setDate(new Date(event.startDate).getDate() + pickedShift / 2);
+                        pickedDate = date.toDateString();
+                        console.log("Current picked date: " + pickedDate);
                         if (pickedShift % 2 === 0) {
                             shift= "Day Shift";
                         } else {
                             shift = "Night Shift";
                         }
                         if (! unavailableDateSet.has(pickedDate + shift)){ //if picked date does not clash
+                            console.log("Success! " + user.key + " gets " + pickedDate); 
+                            console.log("number of remaining shifts to be filled: " + currentOverallShift); 
                             confirmedDateArray[pickedShift] = user.key;
                             dayArray.concat(blockedArray);
                             isBlocked = false;
@@ -79,25 +84,29 @@ function plan(event) {
                     }
                 
                     currentNumShifts --;
-                    currentShift ++;
+                    currentOverallShift ++;
                 }
             }
-            console.log(dayArray);
-            for (let i = 0; i < dayArray.length; i += 2) {
-                const daysFromStart = i / 2;
-                const currentDate = new Date().setDate(event.startDate + daysFromStart).toDateString();
-
-                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate + "Day Shift")
-                , dayArray[i]);
-                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate + "Night Shift")
-                , dayArray[i + 1]);
-            }
+            console.log(confirmedDateArray);
             
-        })
+            
+        });
 
 
         //After looping through each user, apply confirmed dates to calendar
+        for (let i = 0; i < confirmedDateArray.length; i += 2) {
+                const daysFromStart = i / 2;
+                const currentDate = new Date();
+                currentDate.setDate(new Date(event.startDate).getDate() + daysFromStart);
+                console.log(currentDate);
 
+                
+                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate.toDateString() + " Day Shift")
+                , confirmedDateArray[i]);
+                set(ref(database, "events/" + event.eventKey + "/confirmedDates/" + currentDate.toDateString() + " Night Shift")
+                , confirmedDateArray[i + 1]);
+                
+            }
     });
 
 

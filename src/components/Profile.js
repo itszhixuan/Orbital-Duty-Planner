@@ -62,7 +62,6 @@ function Profile(props) {
 
     function handlePlan(event){
         plan(event);
-        setActive("Overall calendar");
     }
 
     function showCode (event) {
