@@ -25,7 +25,9 @@ function Profile(props) {
     const user = props.user;
 
     const [submitted, setSubmitted] = useState(false);
-    console.log(submitted);
+    const [codeCorrect, setCodeCorrect] = useState(false);
+    const [codeIncorrect, setCodeIncorrect] = useState(false);
+    const [chooseShiftInputs, setChooseShiftInputs] = useState(false);
 
     //checks if events are initialised
     if (init) {
@@ -138,6 +140,12 @@ function Profile(props) {
         setSubmitted(false);
         console.log(submitted);
     }
+
+    function checkCode(){
+        setCodeCorrect(false);
+        console.log(codeCorrect);
+    }
+
     const plannedEvents = events.filter((event) => event.planner === auth.currentUser.uid);
     const joinedEvents = events.filter((event) => event.planner !== auth.currentUser.uid);
     const plannedEventList = plannedEvents.map(mapEventsToList);
@@ -153,6 +161,27 @@ function Profile(props) {
                         <Snackbar open={submitted} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {hideMessage()}}>
                             <Alert severity="success" onClose={() => {hideMessage()}}>
                                 Event successfully created!
+                            </Alert>
+                        </Snackbar>
+                    }
+                    {codeCorrect &&
+                        <Snackbar open={codeCorrect} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {checkCode()}}>
+                            <Alert severity="success" onClose={() => {checkCode()}}>
+                                Event Joined Successfully!
+                            </Alert>
+                        </Snackbar>
+                    }
+                    {codeIncorrect &&
+                        <Snackbar open={codeIncorrect} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {setCodeIncorrect(false)}}>
+                            <Alert severity="error" onClose={() => {setCodeIncorrect(false)}}>
+                                Code is invalid!
+                            </Alert>
+                        </Snackbar>
+                    }
+                    {chooseShiftInputs &&
+                        <Snackbar open={chooseShiftInputs} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {setChooseShiftInputs(false)}}>
+                            <Alert severity="success" onClose={() => {setChooseShiftInputs(false)}}>
+                                Your inputs have been recorded!
                             </Alert>
                         </Snackbar>
                     }
@@ -201,7 +230,8 @@ function Profile(props) {
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
-
+                    setCodeCorrect = {setCodeCorrect}
+                    setCodeIncorrect = {setCodeIncorrect}
                 />
 
                 :<Member 
@@ -211,6 +241,7 @@ function Profile(props) {
                     setPoints = {setPoints}
                     weekdayPoints = {weekdayPoints}
                     weekendPoints = {weekendPoints}
+                    setChooseShiftInputs = {setChooseShiftInputs}
                 />
             }
         </>

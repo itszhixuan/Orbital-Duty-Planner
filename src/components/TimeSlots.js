@@ -18,6 +18,7 @@ function Time_slots(props) {
   const [repeatedValue, setRepeatedValue] = useState(null);
   const currentEvent = props.currentEvent;
   const setActive = props.setActive; 
+  const setChooseShiftInputs = props.setChooseShiftInputs;
 
   function displayInfo(e) {
     setInfo(true);
@@ -76,6 +77,7 @@ function Time_slots(props) {
     event.preventDefault();
     addEventToDatabase(auth.currentUser.uid, currentEvent.eventKey);
     setActive("Profile");
+    setChooseShiftInputs(true);
   }
   function addEventToDatabase(profileUID, eventKey) {
     const eventRef = ref(database, "events/" + eventKey + "/users/" + profileUID + "/inputs/")

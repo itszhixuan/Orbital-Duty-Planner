@@ -10,6 +10,9 @@ function InputCode(props) {
     const setActive = props.setActive;
     const events = props.events;
     const setEvents = props.setEvents;
+    const setCodeCorrect = props.setCodeCorrect;
+    const setCodeIncorrect = props.setCodeIncorrect;
+
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -31,8 +34,10 @@ function InputCode(props) {
                         console.log(snapshot.val());
                         console.log(eventPlanner.val());
                         setEvents(newEvents);
+                        setCodeCorrect(true);
                     } else {
-                        alert ("Code entered is invalid")
+                        /* alert ("Code entered is invalid") */
+                        setCodeIncorrect(true);
                         /* setInvalidCode("The code is invalid.") */
                     }
                 })

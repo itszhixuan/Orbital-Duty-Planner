@@ -14,6 +14,7 @@ function Member(props) {
     const weekdayPoints = props.weekdayPoints;
     const minDate = new Date(currentEvent.startDate);
     const maxDate = new Date(currentEvent.endDate);
+    const setChooseShiftInputs = props.setChooseShiftInputs;
 
     function handleDayClick(value, event) {
         setShowTime(true);
@@ -73,6 +74,7 @@ function Member(props) {
                 date={date}
                 currentEvent={currentEvent}
                 setActive = {setActive}
+                setChooseShiftInputs = {setChooseShiftInputs}
                 />
             </body>
         </>
