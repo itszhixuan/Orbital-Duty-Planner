@@ -9,7 +9,7 @@ import Calendar from "react-calendar";
 import plan from "../Helper Functions/sorter";
 import DisplayCode from "./DisplayCode";
 import InputCode from "./InputCode";
-import { Alert, Snackbar } from '@mui/material';
+import AlertMessages from "./AlertMessages";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -135,16 +135,6 @@ function Profile(props) {
         setTabOpen((prevState) =>  ({...prevState, [e.eventKey]: !prevState[e.eventKey]}))
         console.log(tabOpen);
     } */
-    
-    function hideMessage(){
-        setSubmitted(false);
-        console.log(submitted);
-    }
-
-    function checkCode(){
-        setCodeCorrect(false);
-        console.log(codeCorrect);
-    }
 
     const plannedEvents = events.filter((event) => event.planner === auth.currentUser.uid);
     const joinedEvents = events.filter((event) => event.planner !== auth.currentUser.uid);
@@ -157,34 +147,16 @@ function Profile(props) {
                 active === "Profile" 
                 ? <> 
                 <div className='event-page'>
-                    {submitted && 
-                        <Snackbar open={submitted} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {hideMessage()}}>
-                            <Alert severity="success" onClose={() => {hideMessage()}}>
-                                Event successfully created!
-                            </Alert>
-                        </Snackbar>
-                    }
-                    {codeCorrect &&
-                        <Snackbar open={codeCorrect} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {checkCode()}}>
-                            <Alert severity="success" onClose={() => {checkCode()}}>
-                                Event Joined Successfully!
-                            </Alert>
-                        </Snackbar>
-                    }
-                    {codeIncorrect &&
-                        <Snackbar open={codeIncorrect} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {setCodeIncorrect(false)}}>
-                            <Alert severity="error" onClose={() => {setCodeIncorrect(false)}}>
-                                Code is invalid!
-                            </Alert>
-                        </Snackbar>
-                    }
-                    {chooseShiftInputs &&
-                        <Snackbar open={chooseShiftInputs} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={10000} onClose={() => {setChooseShiftInputs(false)}}>
-                            <Alert severity="success" onClose={() => {setChooseShiftInputs(false)}}>
-                                Your inputs have been recorded!
-                            </Alert>
-                        </Snackbar>
-                    }
+                    <AlertMessages
+                        submitted = {submitted}
+                        setSubmitted = {setSubmitted}
+                        codeCorrect = {codeCorrect}
+                        setCodeCorrect = {setCodeCorrect}
+                        codeIncorrect = {codeIncorrect}
+                        setCodeIncorrect = {setCodeIncorrect}
+                        chooseShiftInputs = {chooseShiftInputs}
+                        setChooseShiftInputs = {setChooseShiftInputs}                
+                    />
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
                     <button onClick={() => setActive("InputCode")} className = "learnmore-button">Input code</button>
