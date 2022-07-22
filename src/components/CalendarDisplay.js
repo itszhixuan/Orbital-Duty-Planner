@@ -6,6 +6,7 @@ import React from 'react'
 function Calendar_display(props) {
  
     const setActive = props.setActive; 
+    const setChooseShiftInputs = props.setChooseShiftInputs;
 
     return (
     <div>
@@ -14,6 +15,7 @@ function Calendar_display(props) {
     date={props.date}
     currentEvent={props.currentEvent}
     setActive = {setActive}
+    setChooseShiftInputs = {setChooseShiftInputs}
     /> : null}
     </div>
     )

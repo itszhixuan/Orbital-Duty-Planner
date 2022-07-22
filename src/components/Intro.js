@@ -3,6 +3,7 @@ import {createUserWithEmailAndPassword} from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from '../Firebase_config';
 import '../index.css';
+import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 
 function Intro(props) {
     const [registerEmail, setRegisterEmail]  = useState("");
@@ -18,8 +19,25 @@ function Intro(props) {
             await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
             handleLoggedIn();
         } catch (error) {
-            SetError(error.message);
-            console.log(error.message);
+            if (error.code === "auth/email-already-in-use"){
+                SetError("Sorry, the current email is already in use. Did you mean to log in instead?");
+            }
+            else if (error.code === "auth/weak-password"){
+                SetError("Sorry, the password should be at least 6 characters.");
+            }
+            else if (error.code === "auth/invalid-email"){
+                SetError("Sorry, the email entered is in an invalid format.");
+            }
+            else if (error.code === "auth/internal-error"){
+                SetError("The password field has not been filled.");
+            }
+            else if (error.code === "auth/missing-email"){
+                SetError("The email field has not been filled.");
+            }
+            else {
+                SetError(error.message);
+                console.log(error.message);
+            }
         }
     }
 
@@ -28,8 +46,25 @@ function Intro(props) {
            await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
            handleLoggedIn();
         } catch (error2) {
-            SetError2(error2.message);
-            console.log(error2.message);
+            if (error2.code === "auth/user-not-found"){
+                SetError2("Sorry, the email entered is not found. Did you mean to sign up instead?");
+            }
+            else if (error2.code === "auth/wrong-password"){
+                SetError2("Sorry, the password entered is incorrect.");
+            }
+            else if (error2.code === "auth/too-many-requests"){
+                SetError2("Sorry, access to this account has been temporarily disabled due to numerous failed login attempts. Please try again later.");
+            }
+            else if (error2.code === "auth/internal-error"){
+                SetError2("The password field has not been filled.");
+            }
+            else if (error2.code === "auth/invalid-email"){
+                SetError2("Sorry, the email entered is in an invalid format.");
+            }
+            else {
+                SetError2(error2.message);
+                console.log(error2.message);
+            }
         }
     }
     return (

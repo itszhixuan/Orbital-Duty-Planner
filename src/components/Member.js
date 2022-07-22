@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Calendar } from "react-calendar";
 import CalendarDisplay from "./CalendarDisplay";
+import { Popover, Typography } from '@mui/material';
+
 
 function Member(props) {
     const [markedDatesSet, setMarkedDatesSet] = useState([new Date()]);
@@ -14,6 +16,9 @@ function Member(props) {
     const weekdayPoints = props.weekdayPoints;
     const minDate = new Date(currentEvent.startDate);
     const maxDate = new Date(currentEvent.endDate);
+    const setChooseShiftInputs = props.setChooseShiftInputs;
+
+    const [showInfo, setShowInfo] = useState(false);
 
     function handleDayClick(value, event) {
         setShowTime(true);
@@ -55,7 +60,30 @@ function Member(props) {
                 }*/
     return (
         <>
-            <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}</h2>
+            
+            <div className="information">
+                <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}
+                <i className="fa fa-info-circle" onClick={() => {setShowInfo(true)}}></i>
+                {showInfo && <Popover open={showInfo} onClose={() => {setShowInfo(false)}}
+                anchorOrigin={{
+                    vertical: 'center',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'center',
+                    horizontal: 'center',
+                }}
+                >
+                    <Typography sx={{ p: 2 }}>
+                    <h3>Details of {currentEvent.eventName}:</h3>
+                    <p>Starting Time for Day Shift: {currentEvent.dayShiftStartTime}</p>
+                    <p>Number of working hours for Day Shift: {currentEvent.dayShiftHours}</p>
+                    <p>Starting Time for Night Shift: {currentEvent.nightShiftStartTime}</p>
+                    <p>Number of working hours for Night Shift: {currentEvent.nightShiftHours}</p>
+                    </Typography>
+                </Popover>}
+                </h2>
+            </div>
             <body>
                 <Calendar
                 minDate = {minDate}
@@ -73,6 +101,7 @@ function Member(props) {
                 date={date}
                 currentEvent={currentEvent}
                 setActive = {setActive}
+                setChooseShiftInputs = {setChooseShiftInputs}
                 />
             </body>
         </>
