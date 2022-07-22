@@ -6,7 +6,7 @@ import { shuffleArray} from "./shuffle";
 function plan(event) {
     //logging information
     const currentEventRef = ref(database, "events/" + event.eventKey);
-    const numberOfDays = Math.ceil((new Date(event.endDate).getTime() - new Date(event.startDate).getTime()) / (1000 * 3600 * 24));
+    const numberOfDays = Math.ceil((new Date(event.endDate).getTime() - new Date(event.startDate).getTime()) / (1000 * 3600 * 24)) + 1;
 
     console.log("Current event: " + event.eventKey);
     console.log("Planning event: ");
@@ -66,7 +66,7 @@ function plan(event) {
                     
                     while(isBlocked) {
                         const date= new Date();
-                        date.setDate(new Date(event.startDate).getDate() + pickedShift);//.setDate(new Date(event.startDate).getDate() + pickedShift / 2);
+                        date.setDate(new Date(event.startDate).getDate() + Math.floor(pickedShift / 2));//.setDate(new Date(event.startDate).getDate() + pickedShift / 2);
                         pickedDate = date.toDateString();
                         console.log("Current picked date: " + pickedDate);
                         if (pickedShift % 2 === 0) {
