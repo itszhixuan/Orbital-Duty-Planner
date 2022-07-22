@@ -228,6 +228,16 @@ nav .fa{
   display:none;
 }
 
+.information .fa{
+  display: block;
+  margin: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  right: 0;
+  top: 120px;
+  position: absolute;
+}
 @media(max-width: 700px){
   .text-box h1{
     font-size: 20px;
