@@ -14,7 +14,10 @@
       - [Footer](#footer)
       - [Profile Page](#profile-page)
       - [Event Creator](#event-creator)
+      - [Generating a Code](#generating-a-code)
+      - [Inputting a Code](#inputting-a-code)
       - [Selection of Dates](#selection-of-dates)
+      - [Generating a Schedule](#generating-a-schedule)
   - [Program Flow](#program-flow)
   - [Component Interaction](#component-interaction)
   - [Timeline](#timeline)
@@ -30,12 +33,22 @@ Members: Lee Zhi Xuan, Johnathan Wee
 Proposed Level of Achievement: Apollo 11
 
 ## Proof of Concept
-Our Website can be accessed through the following link: 
+Our Website can be accessed through the following link: https://plan-it-daf58--milestone2-22ohnxql.web.app/
 
-We have some dummy accounts that you may use to reduce the hassle of creating your own accounts.
+We have some dummy events that you may use to reduce the hassle of joining events created by other Planners.
+<ul> 	
+	<li>Event Codes</li>
+	<ul>
+		<li> -N5_CF1k58WY_Jfh-buF </li>
+		<li> -N5_CTm085WHPJx6XwYp </li>
+		<li> -N5_D65OPMkQatU9CyFd </li>
+	</ul>
+</ul>
+For emails, you may decide to use temporary emails generated from https://temp-mail.org/en/ to try out our website.
 
 ## Motivation
 Have you ever experienced the difficulty of creating a schedule for an organisation/club that fully integrates the demands, preferences and availability of each employee/member? Almost every organisation and club will rely on a shift system to organise events/ensure that its operations run smoothly. However, the process of creating a schedule that caters to everyone's availability while having the meet the demands/requirements of their organisation (such as having a minimum number of shifts per month) can become very tedious and time-consuming. As the number of employees/members increase, the task at hand also gets exponentially harder.
+
 
 Currently, most duty planning processes are done manually and there are limited tools available to speed up the process. Therefore, we felt that this repetitive process can be improved to increase efficiency.
 
@@ -64,7 +77,7 @@ To attract the attention of our users, a simple page with our project goal will 
 ![homepage](https://user-images.githubusercontent.com/88086170/173574517-03556645-67e9-4968-a7d2-6d75bce5139f.png)
 
 #### About Page
-As the content on the Home Page is kept to the minimum, the About Page will provide more information on our goal and the key features of our project that will help to solve their problems.
+As the content on the Home Page is kept to the minimum, the About Page will provide more information on our goal and the key features of our project that will help to solve their problems. The image below shows our goal:
 ![about](https://user-images.githubusercontent.com/88086170/175862476-c754bc9f-e14e-4107-af73-6ff79023d93b.png)
 
 
@@ -77,12 +90,21 @@ A footer has also been attached to all of the pages mentioned above. Located at 
 ![footer](https://user-images.githubusercontent.com/88086170/175862604-d8eca759-eb0e-4714-a7f9-a8a3b7c7bc1f.png)
 
 #### Profile Page
-After logging in, the users will be directed to their profile page which will showcase their existing list of events that they are involved in. For new users, the list of events would be empty. Buttons for users to create a new event and log out will also be shown on the profile page. The profile page serves as an overview on the events and features. The image below shows our goal:
-![profile page](https://user-images.githubusercontent.com/88086170/173577609-8c252814-d207-425e-a7b9-1cc7abd8bd30.png)
+After logging in, the users will be directed to their profile page which will showcase their existing list of events that they are involved in. For new users, the list of events would be empty. Buttons for users to --create a new event, log out and input code-- will also be shown on the profile page. The profile page serves as an overview on the events and features. 
+![profile page](https://user-images.githubusercontent.com/88086170/175941485-d8801c0c-e541-49ee-845e-4829e7cc47f1.png)
+
 
 #### Event Creator
 For the organisation to start the process of creating a schedule, they will be required to fill in the details and requirements of the event. The details entered will be shown to participants/members when they indicate their preferences and availability. The Start and End Dates will also serve as a block out feature, where Members will not be able to select dates that fall out of the range.
 ![event](https://user-images.githubusercontent.com/88086170/175896919-0a75ccd7-8fb3-4391-b914-b7d32aa49080.png)
+
+#### Generating a Code
+To share the event created by the user/organisation, all the planner has to do is to click on the button "View Code" beside the newly created event and the event code would be displayed on the screen. The planner can subsequently share the code on their communication channels, where participants/members can input the code to gain access to the event created.
+![share_code](https://user-images.githubusercontent.com/88086170/175942416-8c25f440-640b-4410-9bc0-78934bf2f0e7.png)
+
+#### Inputting a Code
+Members/Participants that have recieved a code can use the "Input Code" button displayed in the profile page to gain access to the event that is being shared. Currently, we have not implemented a error catching system to catch invalid codes, which would cause the page to blank out. This will be fixed by Milestone 3.
+![input_code](https://user-images.githubusercontent.com/88086170/175943037-4671b691-7e78-4f03-8410-116e2c4a7c3a.png)
 
 #### Selection of Dates
 When the "Choose Shifts" button is clicked in the Profile Page's list of events, the user will be brought to a page with a calendar and available dates for their choosing. 
@@ -91,7 +113,8 @@ When the date of interest is clicked, the shifts and a list of their selection w
 ![choose2](https://user-images.githubusercontent.com/88086170/175897980-b89b4692-c7e9-421a-ac99-2a297082d64b.png)
 When the user is done with their selection, they can submit their inputs and selection by clicking on the Submit button. This will send the inputs into the Firebase real-time database that would subsequently be used to generate the schedule.
 
----------------------can add the generate schedule part------------------------------
+#### Generating a Schedule
+When all inputs are receieved, the Planner can proceed to generate the schedule using the Plan button. As of Milestone 2, we are still unable to code out a perfectly working algorithm that generates a schedule as planned. When the schedule is generated, the shifts that are allocated to each user would appear on their respective calendars, which could be seen in their profile pages.
 
 ## Program Flow
 ![program flow](https://user-images.githubusercontent.com/88086170/175902254-7ed1e266-1004-4ec7-b1c0-78e5bd0f6690.png)

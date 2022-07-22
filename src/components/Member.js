@@ -4,6 +4,8 @@ import { Calendar } from "react-calendar";
 import CalendarDisplay from "./CalendarDisplay";
 
 function Member(props) {
+    const [markedDatesSet, setMarkedDatesSet] = useState([new Date()]);
+
     const currentEvent = props.currentEvent;
     const setActive = props.setActive;
     const points = props.points;
@@ -12,6 +14,17 @@ function Member(props) {
     const weekdayPoints = props.weekdayPoints;
     const minDate = new Date(currentEvent.startDate);
     const maxDate = new Date(currentEvent.endDate);
+
+    function handleDayClick(value, event) {
+        setShowTime(true);
+        const newMarkedDates = [
+            ...markedDatesSet,
+            value
+        ];
+        
+        setMarkedDatesSet(newMarkedDates);
+        console.log("Dates " + markedDatesSet + value);
+    }
 
     function handleClick(value) {
         const dayOfWeek = value.getDay();
@@ -29,6 +42,17 @@ function Member(props) {
         setDate(newDate);
         console.log(newDate.toDateString());
     }
+
+    /*onCLickday ={() => setShowTime(true)}
+                tileClassName = {(activeStartDate, date, view) =>  
+                {
+                    console.log("Tile date: " + date);
+                    console.log("marked date: " + markedDatesSet);
+                    if (view === 'month' && markedDatesSet.find(date)) {
+                        return 'highlight';
+                    } 
+                }
+                }*/
     return (
         <>
             <h2 className="toppadding"> Choose your dates! {currentEvent.startDate}</h2>
@@ -37,10 +61,9 @@ function Member(props) {
                 minDate = {minDate}
                 maxDate = {maxDate}
                 tileContent = {<p></p>}
-/*                 onClickDay = {(value, event) => handleClick(value)} */
+                onClickDay = {() => setShowTime(true)} 
                 onChange={onDateChange}
                 value={date}
-                onClickDay={() => setShowTime(true)}
                 />
                 
                 <button onClick = {() => setActive("Profile")} className='learnmore-button'>Return to profile</button>

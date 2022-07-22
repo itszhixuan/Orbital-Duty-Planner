@@ -61,20 +61,10 @@ function AddEvent(props) {
         const newKey = eventRef.key;
         console.log("Event key: " + newKey);
 
-
-
-
-    /* 
-        const newRef = ref(database, "events");
-       const updates = {};
-        updates["users/" + profileUID + "/" + newKey] = eventComponent;
-        updates["events"] = eventComponent;
-set(newRef, eventComponent);
-        update(ref(database), updates);
-        */
-
         eventComponent.eventKey = newKey;
         set(eventRef, eventComponent);
+        set(ref(database, "events/" + newKey + "/planner"), auth.currentUser.uid);
+        console.log("current user = " + auth.currentUser.email);
         return newKey;
     }
 

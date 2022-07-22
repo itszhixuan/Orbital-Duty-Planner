@@ -626,3 +626,7 @@ code {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+.tile--active {
+  background-color: #282828;
+  color: red;
+}

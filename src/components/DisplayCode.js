@@ -1,8 +1,11 @@
+import { auth } from "../Firebase_config";
 
 
 function DisplayCode(props) {
     const setActive = props.setActive;
     const currentEvent = props.currentEvent;
+    console.log(currentEvent.planner);
+    console.log(currentEvent.planner === auth.currentUser.uid);
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { ref, get, val} from "firebase/database";
+import { ref, get, val, set, update, push} from "firebase/database";
 import { useState } from "react";
 import {database, auth} from "../Firebase_config";
 
@@ -11,19 +11,23 @@ function InputCode(props) {
     const setEvents = props.setEvents;
     function handleSubmit(e) {
         e.preventDefault();
-
+        set( ref(database, "events/" + eventCode + "/users/" + auth.currentUser.uid), "");
+        //set(newMembers, auth.currentUser.uid);
         get(ref(database, "events/" + eventCode + "/planner"))
         .then((eventPlanner) => {
             get(ref(database, "users/" + eventPlanner.val() + "/" + eventCode))
             .then((snapshot) => {
                 const value = snapshot.val();
+                set(ref(database, "users/" + auth.currentUser.uid + "/" + eventCode), value);
                 
                 const newEvents = [
                     ...events,
                     value
                 ]
+                /*
                 console.log(snapshot.val());
                 console.log(eventPlanner.val());
+                */
                 setEvents(newEvents);
             })
         });
