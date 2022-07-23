@@ -18,7 +18,8 @@ function Profile(props) {
     const [init, setInit] = useState(true);
     const [weekdayPoints, setCurrentWeekdayPoints] = useState(1);
     const [weekendPoints, setCurrentWeekendPoints] = useState(2);
-
+    const [confirmedDates, setConfirmedDates] = useState([])
+    
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
 
@@ -43,10 +44,30 @@ function Profile(props) {
             } else {
                 console.log("hello there's nothing here");
             } 
+const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid);
+    get(confirmedRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            var newConfirmedDates = [];
+            snapshot.forEach((event) => {
+                const eventData = event.val();
+                newConfirmedDates = [
+                    ...newConfirmedDates,
+                    eventData,
+                ];
+            });
+            setConfirmedDates(newConfirmedDates);
+        } else {
+            console.log("No confirmed dates");
+        }
+    })
+
         }).catch ((error) => {
                 console.error(error);
         });
     }
+
+    //initialise confirmed dates
+    
     
     //check current event list
     console.log(events);
@@ -142,6 +163,17 @@ function Profile(props) {
     const plannedEventList = plannedEvents.map(mapEventsToListPlanned);
     const joinedEventList = joinedEvents.map(mapEventsToListJoined);
 
+    /*
+                        tileContent={({date, view}) => {
+                            const a = get(ref(database, "usersConfirmedDates/" + auth.currentUser.uid + "/confirmedDates/" + date));
+                            if (a && view === "month") {
+                                <p>{a.eventName} + {" " + a.description}</p>
+                            } else {
+                                <p>HI</p>
+                            }
+                        }
+                        }*/
+                    
     return (
         <>
             {
@@ -163,11 +195,17 @@ function Profile(props) {
                     </ul>
                     <h2> Your active calendar: </h2>
                     <Calendar 
-                        tileContent={({activeStartDate, date, view}) => {
-                            const a = get(ref(database, "users/" + auth.currentUser.uid + "/ConfirmedDates/" + date));
-                            if (a && view === "month") {
-                                <p>{a.eventName} + {a.shift}</p>
-                            } 
+                        tileContent={({date, view}) => {
+                            /*
+                                if (x.exists() && view === "month") {
+                                return <p>{a.eventName + " " + a.description}</p>
+                                } else {
+                                return "HI";
+                                }
+                            }
+                        
+                        */
+                        return "no"
                         }
                         }
                     />
