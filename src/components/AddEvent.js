@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { database, auth} from '../Firebase_config';
 import { push, set, ref, update } from "firebase/database";
 
@@ -16,10 +16,11 @@ function AddEvent(props) {
     const [emails, setEmails] = useState([""]);
     const [em, setEm] = useState("");
     
-    
     const setActive = props.setActive; 
     const events = props.events;
     const setEvents = props.setEvents;
+    const setSubmitted = props.setSubmitted;
+
     const emailList = emails.map((e) => 
         <li>
             {e}
@@ -43,6 +44,9 @@ function AddEvent(props) {
         event.preventDefault();
         const newKey = addEventToDatabase(auth.currentUser.uid);
         addEvent(newKey);
+        setSubmitted(true);
+/*         console.log(submitted); */
+        /* alert("Form submitted successfully!") */
     }
 
     function addEvent(newKey) {
@@ -82,6 +86,27 @@ function AddEvent(props) {
         e.preventDefault();
         addEmail();
     }
+
+    useEffect(() => {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd
+        }
+        if (mm < 10) {
+        mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("dateRestriction1").setAttribute("min", today);
+    }, []);
+
+    useEffect(() => {
+        document.getElementById("dateRestriction2").setAttribute("min", startDate);
+    }, [startDate]);
+
     
     return (
         <>
@@ -90,19 +115,23 @@ function AddEvent(props) {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <p className="event-left">Name of Event: </p> 
-                        <input type = 'text' onChange={(e) => setEventName(e.target.value)} className="event-right"/>
+                        <input type = 'text' required 
+                        onChange={(e) => setEventName(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">Total Number of Members: </p> 
-                        <input type = 'number' onChange={(e) => setNumberOfMembers(e.target.value)} className="event-right"/>
+                        <input type = 'number' min = '1' required
+                        onChange={(e) => setNumberOfMembers(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">Start Date: </p> 
-                        <input type = 'date' onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' id ="dateRestriction1" min ="2022-01-01" max = "2050-01-01" required
+                        onChange={(e) => setStartDate(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">End Date: </p> 
-                        <input type = 'date' onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
+                        <input type = 'date' id ="dateRestriction2" min ="2022-01-01" max = "2050-01-01" required
+                        onChange={(e) => setEndDate(e.target.value)} className="event-right"/>
                     </div>
 {/*                     <div>
                         <p className="event-left">Total Hours per Slot: </p> 
@@ -110,19 +139,23 @@ function AddEvent(props) {
                     </div> */}
                     <div>
                         <p className="event-left">Starting time for Day Shift: </p> 
-                        <input type = 'time' onChange={(e) => setDayShiftStart(e.target.value)} className="event-right"/>
+                        <input type = 'time' required
+                        onChange={(e) => setDayShiftStart(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">Starting time for Night Shift: </p> 
-                        <input type = 'time' onChange={(e) => setNightShiftStart(e.target.value)} className="event-right"/>
+                        <input type = 'time' required
+                        onChange={(e) => setNightShiftStart(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">Number of Hours for Day Shift: </p> 
-                        <input type = 'number' onChange={(e) => setDayShiftHours(e.target.value)} className="event-right"/>
+                        <input type = 'number' required min = '0'
+                        onChange={(e) => setDayShiftHours(e.target.value)} className="event-right"/>
                     </div>
                     <div>
                         <p className="event-left">Number of Hours for Night Shift: </p> 
-                        <input type = 'number' onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
+                        <input type = 'number' required min = '0'
+                        onChange={(e) => setNightShiftHours(e.target.value)} className="event-right"/>
                     </div>
                         {/* <div>
                             <p className = "event-left"> Add Email addresses</p>
@@ -133,9 +166,6 @@ function AddEvent(props) {
                     {/* <div>
                             {emailList}
                         </div> */}
-
-                        
-                    
                     {/*
                     <div>
                         <p className= "event-left"> Email of members</p> 

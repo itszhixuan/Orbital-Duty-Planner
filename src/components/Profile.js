@@ -9,6 +9,7 @@ import Calendar from "react-calendar";
 import plan from "../Helper Functions/sorter";
 import DisplayCode from "./DisplayCode";
 import InputCode from "./InputCode";
+import AlertMessages from "./AlertMessages";
 
 function Profile(props) {
     const [active, setActive] = useState("Profile")
@@ -20,8 +21,16 @@ function Profile(props) {
     const [weekendPoints, setCurrentWeekendPoints] = useState(2);
     const [confirmedDates, setConfirmedDates] = useState([])
     
+    const [tabOpen, setTabOpen] = useState();
+    const [joinedTabOpen, setJoinedTabOpen] = useState();
+
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
+
+    const [submitted, setSubmitted] = useState(false);
+    const [codeCorrect, setCodeCorrect] = useState(false);
+    const [codeIncorrect, setCodeIncorrect] = useState(false);
+    const [chooseShiftInputs, setChooseShiftInputs] = useState(false);
 
     //checks if events are initialised
     
@@ -138,26 +147,37 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
         setEvents(newEvents);
     }
     function mapEventsToListPlanned(e) {
-        return <li>
-        <label className="current-events-left">{e.eventName}  </label>
-        <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
-
-        
-        <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan</button>
-        <button onClick={() => deleteEvent(e, true)} className="current-events-button"> Remove</button>
-    </li>
+        return <li className="shrink">
+            <label className="current-events-left">{e.eventName}  </label>
+            <label className="dropdown">
+                <i class="fa fa-bars" onClick={() =>  setTabOpen(!tabOpen)}></i>
+            </label>
+            <div className={tabOpen ? 'test' : 'test-hidden'}>
+                <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>        
+                <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan Your Event </button>
+                <button onClick={() => deleteEvent(e, true)} className="current-events-button"> Remove</button>
+            </div>
+        </li>
     }
     function mapEventsToListJoined(e) {
-        return <li>
-        <label className="current-events-left">{e.eventName}  </label>         
-
-
-        <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
-        <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
-        <button onClick={() => deleteEvent(e, false)} className="current-events-button"> Remove</button>
-    </li>
+        return <li className="shrink">
+            <label className="current-events-left">{e.eventName}  </label>         
+            <label className="dropdown">
+                <i class="fa fa-bars" onClick={() =>  setJoinedTabOpen(!joinedTabOpen)}></i>
+            </label>
+            <div className={joinedTabOpen ? 'test' : 'test-hidden'}>
+                <button onClick ={() => handleMember(e)} className="current-events-button"> Choose shifts</button>
+                <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>
+                <button onClick={() => deleteEvent(e, false)} className="current-events-button"> Remove</button>
+            </div>   
+        </li>
     }
-    
+
+/*     function collapseStatus(e) {
+        setTabOpen((prevState) =>  ({...prevState, [e.eventKey]: !prevState[e.eventKey]}))
+        console.log(tabOpen);
+    } */
+
     const plannedEvents = events.filter((event) => event.planner === auth.currentUser.uid);
     const joinedEvents = events.filter((event) => event.planner !== auth.currentUser.uid);
     const plannedEventList = plannedEvents.map(mapEventsToListPlanned);
@@ -180,16 +200,26 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                 active === "Profile" 
                 ? <> 
                 <div className='event-page'>
+                    <AlertMessages
+                        submitted = {submitted}
+                        setSubmitted = {setSubmitted}
+                        codeCorrect = {codeCorrect}
+                        setCodeCorrect = {setCodeCorrect}
+                        codeIncorrect = {codeIncorrect}
+                        setCodeIncorrect = {setCodeIncorrect}
+                        chooseShiftInputs = {chooseShiftInputs}
+                        setChooseShiftInputs = {setChooseShiftInputs}                
+                    />
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
                     <button onClick={() => setActive("InputCode")} className = "learnmore-button">Input code</button>
                     <button onClick = {logout} className="learnmore-button">Log out</button>
 
-                    <h2> Planned Events: </h2>
+                    <h2> Events Created:</h2>
                     <ul className="current-events-list">
                         {plannedEventList}
                     </ul>
-                    <h2> Joined Events</h2>
+                    <h2> Events Joined:</h2>
                     <ul className="current-events-list">
                         {joinedEventList}
                     </ul>
@@ -217,6 +247,7 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
+                    setSubmitted = {setSubmitted}
                 />
 
                 :active === "DisplayCode"
@@ -230,7 +261,8 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     setActive = {setActive}
                     events = {events}
                     setEvents = {setEvents}
-
+                    setCodeCorrect = {setCodeCorrect}
+                    setCodeIncorrect = {setCodeIncorrect}
                 />
 
                 :<Member 
@@ -240,6 +272,7 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     setPoints = {setPoints}
                     weekdayPoints = {weekdayPoints}
                     weekendPoints = {weekendPoints}
+                    setChooseShiftInputs = {setChooseShiftInputs}
                 />
             }
         </>
