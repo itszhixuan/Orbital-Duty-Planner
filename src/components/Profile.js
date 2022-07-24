@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AddEvent from "./AddEvent";
-import {auth} from "../Firebase_config"
+import {auth} from "../Firebase_config";
 import { signOut } from "firebase/auth";
 import Member from "./Member";
 import { database } from "../Firebase_config";
@@ -53,17 +53,20 @@ function Profile(props) {
             } else {
                 console.log("hello there's nothing here");
             } 
+
 const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid);
     get(confirmedRef).then((snapshot) => {
         if (snapshot.exists()) {
             var newConfirmedDates = [];
             snapshot.forEach((event) => {
                 const eventData = event.val();
+                eventData.date = event.key;
                 newConfirmedDates = [
                     ...newConfirmedDates,
                     eventData,
                 ];
             });
+            console.log(newConfirmedDates);
             setConfirmedDates(newConfirmedDates);
         } else {
             console.log("No confirmed dates");
@@ -226,17 +229,15 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     <h2> Your active calendar: </h2>
                     <Calendar 
                         tileContent={({date, view}) => {
-                            /*
-                                if (x.exists() && view === "month") {
-                                return <p>{a.eventName + " " + a.description}</p>
+                            return confirmedDates.map((item) => {
+                                if (item.date === date.toDateString()) {
+                                    return <p>{item.eventName} {item.description}</p>
                                 } else {
-                                return "HI";
+                                    return null;
                                 }
+                            });
                             }
-                        
-                        */
-                        return "no"
-                        }
+                            
                         }
                     />
 
