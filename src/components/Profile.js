@@ -23,6 +23,9 @@ function Profile(props) {
     
     const [tabOpen, setTabOpen] = useState();
     const [joinedTabOpen, setJoinedTabOpen] = useState();
+    const [buttonProcess, setButtonProcess] = useState({
+        label: 'Plan Your Event'
+    })
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -31,6 +34,7 @@ function Profile(props) {
     const [codeCorrect, setCodeCorrect] = useState(false);
     const [codeIncorrect, setCodeIncorrect] = useState(false);
     const [chooseShiftInputs, setChooseShiftInputs] = useState(false);
+    const [eventPlanned, setEventPlanned] = useState(false);
 
     //checks if events are initialised
     
@@ -93,7 +97,14 @@ function Profile(props) {
         }
     }
 
-    function handlePlan(event){        
+    function handlePlan(event){  
+        setButtonProcess({label: 'Loading...'});
+        setTimeout(() => {
+            setButtonProcess({
+                label: 'Plan Complete!'
+            })
+            setEventPlanned(true);
+        }, 3000)      
         plan(event);
     }
 
@@ -157,7 +168,7 @@ function Profile(props) {
             </label>
             <div className={tabOpen ? 'test' : 'test-hidden'}>
                 <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>        
-                <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan Your Event </button>
+                <button onClick = {() => handlePlan(e)} className= "current-events-button"> {buttonProcess.label} </button>
                 <button onClick={() => deleteEvent(e, true)} className="current-events-button"> Remove</button>
             </div>
         </li>
@@ -211,7 +222,9 @@ function Profile(props) {
                         codeIncorrect = {codeIncorrect}
                         setCodeIncorrect = {setCodeIncorrect}
                         chooseShiftInputs = {chooseShiftInputs}
-                        setChooseShiftInputs = {setChooseShiftInputs}                
+                        setChooseShiftInputs = {setChooseShiftInputs}
+                        eventPlanned = {eventPlanned}
+                        setEventPlanned = {setEventPlanned}                
                     />
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>
