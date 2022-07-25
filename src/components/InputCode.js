@@ -42,8 +42,7 @@ function InputCode(props) {
                 /*
                 console.log(snapshot.val());
                 console.log(eventPlanner.val());
-                */
-                setEvents(newEvents);
+                setEvents(newEvents);*/
             })})
         /*} catch(error) {
             console.log(error)

@@ -23,6 +23,9 @@ function Profile(props) {
     
     const [tabOpen, setTabOpen] = useState();
     const [joinedTabOpen, setJoinedTabOpen] = useState();
+    const [buttonProcess, setButtonProcess] = useState({
+        label: 'Plan Your Event'
+    })
 
     const handleLoggedIn = props.handleLoggedIn;
     const user = props.user;
@@ -93,7 +96,13 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
         }
     }
 
-    function handlePlan(event){        
+    function handlePlan(event){  
+        setButtonProcess({label: 'Loading...'});
+        setTimeout(() => {
+            setButtonProcess({
+                label: 'Plan Complete!'
+            })
+        }, 3000)      
         plan(event);
     }
 
@@ -157,7 +166,7 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
             </label>
             <div className={tabOpen ? 'test' : 'test-hidden'}>
                 <button onClick = {() => showCode(e)} className = "current-events-button"> View Code</button>        
-                <button onClick = {() => handlePlan(e)} className= "current-events-button"> Plan Your Event </button>
+                <button onClick = {() => handlePlan(e)} className= "current-events-button"> {buttonProcess.label} </button>
                 <button onClick={() => deleteEvent(e, true)} className="current-events-button"> Remove</button>
             </div>
         </li>
