@@ -231,7 +231,7 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                         tileContent={({date, view}) => {
                             return confirmedDates.map((item) => {
                                 if (item.date === date.toDateString()) {
-                                    return <p>{item.eventName} {item.description}</p>
+                                    return <p>{item.eventName} {item.description} {item.date}</p>
                                 } else {
                                     return null;
                                 }

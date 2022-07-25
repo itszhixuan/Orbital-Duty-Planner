@@ -65,9 +65,10 @@ function plan(event) {
                     let isBlocked = true;
                     
                     while(isBlocked) {
-                        const date= new Date();
+                        const date= new Date(event.startDate);
                         date.setDate(new Date(event.startDate).getDate() + Math.floor(pickedShift / 2));//.setDate(new Date(event.startDate).getDate() + pickedShift / 2);
                         pickedDate = date.toDateString();
+                        console.log("");
                         console.log("Current picked date: " + pickedDate);
                         if (pickedShift % 2 === 0) {
                             shift= "Day Shift";
@@ -101,6 +102,8 @@ function plan(event) {
             
             
         });
+
+        //In case of dates that are blocked by all users, randomly assigns date to a user.
 
 
         //After looping through each user, apply confirmed dates to calendar
