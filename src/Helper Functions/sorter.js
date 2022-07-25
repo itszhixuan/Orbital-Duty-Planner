@@ -79,9 +79,8 @@ function plan(event) {
                             console.log("Success! " + user.key + " gets " + pickedDate); 
                             console.log("number of remaining shifts to be filled: " + currentOverallShift); 
                             confirmedDateArray[pickedShift] = user.key;
-                            set(ref(database, "usersConfirmedDates/" + user.key + "/" + pickedDate + event.eventKey), {
-                                eventName : event.eventName,
-                                description : shift
+                            set(ref(database, "usersConfirmedDates/" + user.key + "/" + pickedDate + event.eventKey + shift), {
+                                eventName : event.eventName
                             });
                             dayArray = dayArray.concat(blockedArray);
                             blockedArray = [];
