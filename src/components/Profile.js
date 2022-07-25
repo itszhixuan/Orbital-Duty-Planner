@@ -229,13 +229,16 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     <h2> Your active calendar: </h2>
                     <Calendar 
                         tileContent={({date, view}) => {
-                            return confirmedDates.map((item) => {
-                                if (item.date === date.toDateString()) {
-                                    return <p>{item.eventName} {item.description} {item.date}</p>
-                                } else {
-                                    return null;
-                                }
+                            let dates = confirmedDates.filter((item) => item.date === date.toDateString())
+                            .map((item) => {
+                                return <li> 
+                                <label> {item.eventName} : {item.description}</label>
+                                
+                                 </li>
                             });
+                            return <ul>
+                                {dates}
+                            </ul>
                             }
                             
                         }
