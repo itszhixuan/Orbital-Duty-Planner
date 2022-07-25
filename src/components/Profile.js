@@ -54,28 +54,28 @@ function Profile(props) {
                 console.log("hello there's nothing here");
             } 
 
-const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid);
-    get(confirmedRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            var newConfirmedDates = [];
-            snapshot.forEach((event) => {
-                const eventData = event.val();
-                eventData.date = event.key;
-                newConfirmedDates = [
-                    ...newConfirmedDates,
-                    eventData,
-                ];
-            });
-            console.log(newConfirmedDates);
-            setConfirmedDates(newConfirmedDates);
-        } else {
-            console.log("No confirmed dates");
-        }
-    })
+        const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid);
+            get(confirmedRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    var newConfirmedDates = [];
+                    snapshot.forEach((event) => {
+                        const eventData = event.val();
+                        eventData.date = event.key;
+                        newConfirmedDates = [
+                            ...newConfirmedDates,
+                            eventData,
+                        ];
+                    });
+                    console.log(newConfirmedDates);
+                    setConfirmedDates(newConfirmedDates);
+                } else {
+                    console.log("No confirmed dates");
+                }
+            })
 
-        }).catch ((error) => {
-                console.error(error);
-        });
+            }).catch ((error) => {
+                    console.error(error);
+            });
     }
 
     //initialise confirmed dates
@@ -229,7 +229,8 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                     <h2> Your active calendar: </h2>
                     <Calendar 
                         tileContent={({date, view}) => {
-                            let dates = confirmedDates.filter((item) => item.date === date.toDateString())
+                            let dates = confirmedDates.filter((item) => item.date === date.toDateString() + " Day Shift"
+                            || item.date === date.toDateString() + " Night Shift")
                             .map((item) => {
                                 return <li> 
                                 <label> {item.eventName} : {item.description}</label>
