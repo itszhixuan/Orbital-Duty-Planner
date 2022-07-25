@@ -34,6 +34,7 @@ function Profile(props) {
     const [codeCorrect, setCodeCorrect] = useState(false);
     const [codeIncorrect, setCodeIncorrect] = useState(false);
     const [chooseShiftInputs, setChooseShiftInputs] = useState(false);
+    const [eventPlanned, setEventPlanned] = useState(false);
 
     //checks if events are initialised
     
@@ -102,6 +103,7 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
             setButtonProcess({
                 label: 'Plan Complete!'
             })
+            setEventPlanned(true);
         }, 3000)      
         plan(event);
     }
@@ -220,7 +222,9 @@ const confirmedRef = ref(database, "usersConfirmedDates/" + auth.currentUser.uid
                         codeIncorrect = {codeIncorrect}
                         setCodeIncorrect = {setCodeIncorrect}
                         chooseShiftInputs = {chooseShiftInputs}
-                        setChooseShiftInputs = {setChooseShiftInputs}                
+                        setChooseShiftInputs = {setChooseShiftInputs}
+                        eventPlanned = {eventPlanned}
+                        setEventPlanned = {setEventPlanned}                
                     />
                     <h2> Hello, {user.email}!</h2>
                     <button onClick = {() => setActive("AddEvent")} className="learnmore-button"> Create Event</button>

@@ -11,6 +11,8 @@ function AlertMessages(props) {
     const setCodeIncorrect = props.setCodeIncorrect;
     const chooseShiftInputs = props.chooseShiftInputs;
     const setChooseShiftInputs = props.setChooseShiftInputs;
+    const eventPlanned = props.eventPlanned;
+    const setEventPlanned = props.setEventPlanned;
 
     function hideMessage(){
         setSubmitted(false);
@@ -51,7 +53,14 @@ function AlertMessages(props) {
                         Your inputs have been recorded!
                     </Alert>
                 </Snackbar>
-            }            
+            }
+            {eventPlanned &&
+                <Snackbar open={eventPlanned} anchorOrigin={{vertical: 'top', horizontal: 'center',}} autoHideDuration={6000} onClose={() => {setEventPlanned(false)}}>
+                    <Alert severity="success" onClose={() => {setEventPlanned(false)}}>
+                        Your event has been planned! The shifts will be displayed on each individual Member's account.
+                    </Alert>
+                </Snackbar>
+            }                
         </>
     )
 }
