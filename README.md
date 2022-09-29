@@ -2,6 +2,7 @@
 <h1> Table of Contents </h1>
 
 - [Team AI-5](#team-ai-5)
+  - [Updated README](#updated-readme)
   - [Proof of Concept](#proof-of-concept)
   - [Motivation](#motivation)
   - [Our Solution](#our-solution)
@@ -32,8 +33,11 @@ Members: Lee Zhi Xuan, Johnathan Wee
 
 Proposed Level of Achievement: Apollo 11
 
+## Updated README
+This README file was designed for our Milestone 2 submission. For the Milestone 3 README, please navigate to https://drive.google.com/file/d/1B6JtZnE9dac5LQV3u3VlNXyn2kggrqAD/view?usp=sharing for the updated version.  
+
 ## Proof of Concept
-Our Website can be accessed through the following link: https://plan-it-daf58--milestone2-22ohnxql.web.app/
+Our Website can be accessed through the following link: https://plan-it-daf58--milestone2-22ohnxql.web.app/ (link has expired)
 
 We have some dummy events that you may use to reduce the hassle of joining events created by other Planners.
 <ul> 	
